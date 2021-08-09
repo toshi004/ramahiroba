@@ -1,5 +1,31 @@
 Rails.application.routes.draw do
-  devise_for :admins
+  root to: 'public/homes#top'
+  get 'about', to: 'public/homes#about'
+
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  namespace :admin do
+    devise_for :admins, skip: :all
+    devise_scope :admin do
+      get 'sign_in', to: 'devise/sessions#new'
+      post 'sign_in', to: 'devise/sessions#create'
+      delete 'sign_out', to: 'devise/sessions#destroy'
+    end
+    resources :users, only: [:index, :show, :update]
+    resources :post_comments, only: [:index, :show, :destroy]
+  end
+
+  scope module: :public do
+    resources :users, except: [:new, :create]
+      get 'my_page', to: 'users#my_page'
+      get 'unsubscribe', to: 'users#unsubscribe'
+    resources :posts do
+      resources :post_comments, only: [:create, :destroy]
+      resources :goods, only: [:create, :destroy]
+      resources :post_favorites, only: [:create, :destroy]
+    end
+    resources :user_favorites, only: [:create, :destroy]
+    resources :tags, only: [:index]
+  end
+
 end
