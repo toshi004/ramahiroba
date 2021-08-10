@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   root to: 'public/homes#top'
   get 'about', to: 'public/homes#about'
 
-  devise_for :users
+
+  devise_for :admins, skip: :all
 
   namespace :admin do
-    devise_for :admins, skip: :all
     devise_scope :admin do
       get 'sign_in', to: 'devise/sessions#new'
       post 'sign_in', to: 'devise/sessions#create'
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:index, :show, :destroy]
   end
 
+  devise_for :users
   scope module: :public do
     resources :users, except: [:new, :create]
       get 'my_page', to: 'users#my_page'
