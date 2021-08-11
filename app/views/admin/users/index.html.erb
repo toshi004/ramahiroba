@@ -1,1 +1,18 @@
-<h1>Index</h1>
+<h2>ユーザー一覧</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ユーザー名</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.suspended %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
