@@ -1,0 +1,13 @@
+<h2>ユーザー詳細</h2>
+
+<h4><%= @user.name %></h4>
+<h4>報告件数</h4>
+<p>
+  <%= link_to admin_post_comments_path do %>
+  <%= @user.post_comments.count %>件
+  <% end %>
+</p>
+
+<div>
+  <%= link_to '無効にする', admin_user_path(@user), method: :patch %>
+</div>
