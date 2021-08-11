@@ -1,0 +1,26 @@
+<h2>報告一覧</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ユーザー名</th>
+      <th>コメントID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @post_comments.each do |post_comment| %>
+    <tr>
+      <td>
+        <%= link_to admin_user_path(post_comment.user.id) do %>
+        <%= post_comment.user.name %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to admin_post_comment_path(post_comment.id) do %>
+        <%= post_comment.id %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
