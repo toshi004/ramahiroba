@@ -1,0 +1,15 @@
+<h2>報告詳細</h2>
+
+<h4>
+  <%= link_to admin_user_path(@user) do %>
+  <%= @user.name %>
+  <% end %>
+</h4>
+
+<div>
+  <%= @post_comment.comment %>
+</div>
+
+<div>
+  <%= link_to "取り消し", admin_post_comment_path(@post_comment), method: :delete %>
+</div>
