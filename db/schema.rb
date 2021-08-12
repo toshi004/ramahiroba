@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_09_081205) do
+ActiveRecord::Schema.define(version: 2021_08_12_161037) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,21 +24,9 @@ ActiveRecord::Schema.define(version: 2021_08_09_081205) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "genres", force: :cascade do |t|
-    t.integer "genre"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "goods", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "post_comment_reports", force: :cascade do |t|
-    t.integer "post_comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -47,10 +35,10 @@ ActiveRecord::Schema.define(version: 2021_08_09_081205) do
     t.integer "user_id", null: false
     t.integer "post_id", null: false
     t.text "comment", null: false
+    t.boolean "hide", default: false, null: false
+    t.boolean "report", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "hide"
-    t.boolean "report"
   end
 
   create_table "post_favorites", force: :cascade do |t|
@@ -65,9 +53,9 @@ ActiveRecord::Schema.define(version: 2021_08_09_081205) do
     t.string "title", null: false
     t.text "text", null: false
     t.string "image_id"
-    t.string "tag_list"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "emotion"
   end
 
   create_table "tagmaps", force: :cascade do |t|
@@ -82,6 +70,7 @@ ActiveRecord::Schema.define(version: 2021_08_09_081205) do
     t.string "tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tag"], name: "index_tags_on_tag", unique: true
   end
 
   create_table "user_favorites", force: :cascade do |t|
@@ -89,6 +78,7 @@ ActiveRecord::Schema.define(version: 2021_08_09_081205) do
     t.integer "follow_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "follow_id"], name: "index_user_favorites_on_user_id_and_follow_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

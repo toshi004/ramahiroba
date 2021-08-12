@@ -2,9 +2,10 @@ class Post < ApplicationRecord
 
   belongs_to :user
   belongs_to :tagmap
-  belongs_to :genre
   has_many :post_comments, dependent: :destroy
   has_many :goods, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
+
+  enum emotion: { happy: 0, anger: 1, sad: 2, fun: 3}
 
 end
