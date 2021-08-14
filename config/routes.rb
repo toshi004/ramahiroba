@@ -15,8 +15,11 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:index, :show, :destroy]
   end
 
-  devise_for :users
   scope module: :public do
+    devise_for :users, controllers: {
+      sessions: 'public/devise/sessions',
+      registrations: 'public/devise/registrations'
+    }
     resources :users, except: [:new, :create]
       get 'my_page', to: 'users#my_page'
       get 'unsubscribe', to: 'users#unsubscribe'
