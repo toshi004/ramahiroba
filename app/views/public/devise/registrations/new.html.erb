@@ -1,6 +1,6 @@
 <h2>新規ユーザー登録</h2>
 
-<%= form_with model: @User, url: new_user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+<%= form_with model: @user, url: new_user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
   <%= render "public/devise/shared/error_messages", resource: resource %>
 
   <div class="field">
