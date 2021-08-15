@@ -8,4 +8,8 @@ class Post < ApplicationRecord
 
   enum emotion: { happy: 0, anger: 1, sad: 2, fun: 3}
 
+  def start_time
+    self.created_at
+  end
+
 end
