@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   scope module: :public do
     devise_for :users, controllers: {
       sessions: 'public/devise/sessions',
-      registrations: 'public/devise/registrations'
+      registrations: 'public/devise/registrations',
+      passwords: 'public/devise/passwords'
     }
     resources :users, except: [:new, :create]
       get 'my_page', to: 'users#my_page'
