@@ -1,0 +1,22 @@
+<div>
+  <%= attachment_image_tag @user, :image_id, :fill, 20, 20, format: 'jpeg', fallback: "NoImage.jpg" %>
+  <p><%= @user.name %></p>
+  <p><%= @user.introduction %></p>
+  <%= link_to "編集", edit_user_path(@user) %>
+</div>
+
+<div>
+  <%= link_to "おきにいりおともだち一覧", users_path %>
+  <%= link_to "おきにいりおはなし一覧", posts_path %>
+  <%= link_to "Myおはなし一覧", posts_path %>
+</div>
+
+<%= month_calendar events: @posts do |date, posts| %>
+  <%= date.day %>
+
+  <% @posts.each do |post| %>
+    <div>
+      <%= link_to post.title %>
+    </div>
+  <% end %>
+<% end %>

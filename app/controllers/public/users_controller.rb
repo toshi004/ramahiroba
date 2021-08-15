@@ -14,4 +14,13 @@ class Public::UsersController < ApplicationController
     @posts = Post.page(params[:id]).per(4)
   end
 
+  def my_page
+    @user = current_user
+    @posts = @user.posts.all
+  end
+
+  def edit
+    @user = current_user
+  end
+
 end
