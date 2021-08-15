@@ -8,7 +8,7 @@ class Post < ApplicationRecord
 
   attachment :image
 
-  enum emotion: { happy: 0, anger: 1, sad: 2, fun: 3}
+  enum emotion: { happy: 0, angry: 1, sad: 2, fun: 3}
 
   def start_time
     self.created_at

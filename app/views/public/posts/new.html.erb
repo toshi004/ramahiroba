@@ -1,0 +1,36 @@
+<h2>新しいおはなし</h2>
+
+<div>
+  <%= form_with model: @post, local: true do |f| %>
+
+    <div>
+      <%= attachment_image_tag @post, :image, :fill, 30, 30, fallback: "NoImage.jpg" %>
+      <%= f.label :image, '画像' %>
+      <%= f.attachment_field :image %>
+    </div>
+
+    <div>
+      <%= f.label :title, 'タイトル' %>
+      <%= f.text_field :title %>
+    </div>
+
+    <div>
+      <%= f.label :text, '本文' %>
+      <%= f.text_area :text %>
+    </div>
+
+    <div>
+      <%= f.label :emotion, '気持ち' %>
+      <%= f.select, [["Happy","0"],["Angry","1"]["Sad","2"]["Fun","3"]], include_blank: "選択して下さい" %>
+    </div>
+
+    <div>
+      <%= f.label :tag, 'タグ' %>
+      <%= f.text_field :tag %>
+    </div>
+
+    <div>
+      <%= f.submit "おはなしする" %>
+    </div>
+  <% end %>
+</div>
