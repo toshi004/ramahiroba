@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       resources :goods, only: [:create, :destroy]
       resources :post_favorites, only: [:create, :destroy]
     end
+    get 'thanks', to: 'posts#thanks'
     resources :user_favorites, only: [:create, :destroy]
     resources :tags, only: [:index]
   end
