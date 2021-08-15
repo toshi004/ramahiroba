@@ -1,0 +1,11 @@
+<h2>おともだち一覧</h2>
+
+<div>
+  <% @users.each do |user| %>
+  <div>
+    <%= attachment_image_tag user, :image_id, :fill, 20, 20, format: 'jpeg', fallback: "NoImage.jpg" %>
+    <p><%= user.name %></p>
+  </div>
+  <% end %>
+  <%= paginate @users %>
+</div>

@@ -11,4 +11,19 @@ class User < ApplicationRecord
   has_many :followings, through: :user_favorites, source: :follow
   has_many :goods,  dependent: :destroy
 
+  def follow(other_user)
+    unless self == other_user
+      self.user_favorites.find_or_create_by(follow_id: other_user.id)
+    end
+  end
+
+  def unfollow(other_user)
+    user_favorite = self.user_favorites.find_by(follow_id: other_user.id)
+    user_favorite.destroy if user_favorite
+  end
+
+  def following?(other_user)
+    self.followings.include?(other_user)
+  end
+
 end
