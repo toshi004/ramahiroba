@@ -1,0 +1,22 @@
+<!--ヘッダーからの遷移（タブメニュー）-->
+
+<!--お気に入り一覧からの遷移-->
+<!--タグ一覧からの遷移-->
+<div>
+  <% @posts.each do |post| %>
+    <div>
+      <div>
+        <%= attachment_image_tag post.user, :image, :fill, 20, 20, format: 'jpeg', fallback: "NoImage.jpg" %>
+        <p><%= post.user.name %></p>
+      </div>
+      <div>
+        <%= post.title %>
+        <%= post.emotion %>
+      </div>
+      <div>
+        <%= post.text %>
+      </div>
+    </div>
+  <% end %>
+  <%= paginate @posts %>
+</div>
