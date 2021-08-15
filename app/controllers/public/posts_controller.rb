@@ -11,4 +11,11 @@ class Public::PostsController < ApplicationController
     redirect_to thanks_path
   end
 
+  def index
+    # ヘッダーからの遷移（タブメニュー）
+    # お気に入り投稿一覧からの遷移
+    # タグ一覧からの遷移
+    @posts = Post.page(params[:page]).per(10)
+  end
+
 end
