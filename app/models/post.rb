@@ -6,6 +6,8 @@ class Post < ApplicationRecord
   has_many :goods, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
 
+  attachment :image
+
   enum emotion: { happy: 0, anger: 1, sad: 2, fun: 3}
 
   def start_time
