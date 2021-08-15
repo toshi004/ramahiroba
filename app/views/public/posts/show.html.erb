@@ -35,7 +35,10 @@
           <%= attachment_image_tag post_comment.user, :image, :fill, 20, 20, format: 'jpeg', fallback: "NoImage.jpg" %>
           <%= link_to post_comment.user.name, user_path(post_comment.user) %>
           <%= post_comment.comment %>
-          <%= link_to "削除", post_post_comment_path(post_comment) %>
+
+          <% if post_comment.user == current_user %>
+            <%= link_to "削除", post_post_comment_path(post_comment) %>
+          <% end %>
           <!--ポップアップ出してから削除-->
         <% end %>
       </div>
