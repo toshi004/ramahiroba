@@ -18,4 +18,16 @@ class Public::PostsController < ApplicationController
     @posts = Post.page(params[:page]).per(10)
   end
 
+  def show
+    @user = User.find(params[:id])
+    @post = Post.find(params[:id])
+    @post_comment = PostComment.new
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:image, :title, :text, :emotion)
+  end
+
 end

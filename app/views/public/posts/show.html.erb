@@ -1,0 +1,45 @@
+<div>
+
+  <div>
+    <%= attachment_image_tag @user, :image, :fill, 20, 20, format: 'jpeg', fallback: "NoImage.jpg" %>
+    <%= link_to @user.name, user_path(@user) %>
+  </div>
+
+  <div>
+    <div>
+      <div>
+        <%= attachment_image_tag @post, :image, :fill, 50, 70, format: 'jpeg', fallback: "NoImage.jpg" %>
+        <%= @post.title %>
+        <%= @post.emotion %>
+        <!--投稿お気に入りボタン-->
+        <%= @post.text %>
+        <!--タグ-->
+        <!--いいねボタン-->
+        <%= @post.created_at.strftime('%Y/%m/%d') %>
+      </div>
+      <div>
+        <%= link_to "編集", edit_post_path(@post) %>
+        <%= link_to "削除", post_path(@post), method: :delete %>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
+          <%= f.text_area :comment, rows: '1', placeholder: "コメントを書く" %>
+          <%= f.submit "送信" %>
+        <% end %>
+      </div>
+      <div>
+        <%= @post.post_comments.each do |post_comment| %>
+          <%= attachment_image_tag post_comment.user, :image, :fill, 20, 20, format: 'jpeg', fallback: "NoImage.jpg" %>
+          <%= link_to post_comment.user.name, user_path(post_comment.user) %>
+          <%= post_comment.comment %>
+          <%= link_to "削除", post_post_comment_path(post_comment) %>
+          <!--ポップアップ出してから削除-->
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
