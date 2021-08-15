@@ -29,6 +29,16 @@ class Public::UsersController < ApplicationController
     redirect_to my_page_path
   end
 
+  def unsubscribe
+    @user = current_user
+  end
+
+  def destroy
+    @user = current_user
+    @user.destroy
+    redirect_to root_path
+  end
+
   private
 
   def user_params
