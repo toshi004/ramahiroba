@@ -1,0 +1,31 @@
+<h2>プロフィール編集</h2>
+
+<div>
+  <%= link_to "退会する", user_path(@user), method: :delete %>
+</div>
+
+<div>
+  <%= form_with model: @user, local: true do |f| %>
+
+    <div>
+      <%= attachment_image_tag @user, :image, :fill, 30, 30, fallback: "NoImage.jpg" %>
+      <%= f.label :image, 'アイコン' %>
+      <%= f.attachment_field :image %>
+    </div>
+
+    <div>
+      <%= f.label :name, 'ユーザー名' %>
+      <%= f.text_field :name, autofocus: true, placeholder: "ユーザー名" %>
+    </div>
+
+    <div>
+      <%= f.label :introduction, '自己紹介' %>
+      <%= f.text_area :introduction %>
+    </div>
+
+    <div>
+      <%= f.submit "更新" %>
+    </div>
+  <% end %>
+
+</div>

@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :followings, through: :user_favorites, source: :follow
   has_many :goods,  dependent: :destroy
 
+  attachment :image
+
   def follow(other_user)
     unless self == other_user
       self.user_favorites.find_or_create_by(follow_id: other_user.id)
