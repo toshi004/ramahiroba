@@ -9,4 +9,9 @@ class Public::UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+    @posts = Post.page(params[:id]).per(4)
+  end
+
 end
