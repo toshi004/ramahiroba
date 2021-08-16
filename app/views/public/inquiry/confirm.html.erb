@@ -1,0 +1,30 @@
+<div>
+  <h2>お問い合わせ</h2>
+
+  <div>
+    <%= form_with model: @inquiry, :url => thanks_path, local: true do |f| %>
+
+      <div>
+        <%= f.label :name, 'お名前' %>
+        <%= f.hidden_field :name %>
+        <%= @inquiry.name %>
+      </div>
+
+      <div>
+        <%= f.label :email, 'メールアドレス' %>
+        <%= f.hidden_field :email %>
+        <%= @inquiry.email %>
+      </div>
+
+      <div>
+        <%= f.label :message, 'お問い合わせ内容' %>
+        <%= f.hidden_field :message %>
+        <%= @inquiry.message %>
+      </div>
+
+      <div>
+        <%= f.submit "送信" %>
+      </div>
+
+  </div>
+</div>

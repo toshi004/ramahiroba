@@ -1,0 +1,39 @@
+<div>
+  <h2>お問い合わせ</h2>
+
+  <% if @inquiry.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <strong>入力内容にエラーがあります</strong>
+      <ul>
+        <% @inquiry.errors.each do |attr, msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form_with model: @inquiry, :url => confirm_path, local: true do |f| %>
+
+      <div>
+        <%= f.label :name, 'お名前' %>
+        <%= f.text_field :name, autofocus: true %>
+      </div>
+
+      <div>
+        <%= f.label :email, 'メールアドレス' %>
+        <%= f.email_field :email %>
+      </div>
+
+      <div>
+        <%= f.label :message, 'お問い合わせ内容' %>
+        <%= f.text_area :message %>
+      </div>
+
+      <div>
+        <%= f.submit "確認" %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

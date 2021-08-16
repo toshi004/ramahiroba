@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'inquiry/index'
+    get 'inquiry/confirm'
+    get 'inquiry/thanks'
+  end
+  get 'inquiry/index'
+  get 'inquiry/confirm'
+  get 'inquiry/thanks'
   root to: 'public/homes#top'
   get 'about', to: 'public/homes#about'
 
@@ -29,9 +37,12 @@ Rails.application.routes.draw do
       resources :goods, only: [:create, :destroy]
       resources :post_favorites, only: [:create, :destroy]
     end
-    get 'thanks', to: 'posts#thanks'
+    get 'posts/thanks', to: 'posts#thanks'
     resources :user_favorites, only: [:create, :destroy]
     resources :tags, only: [:index]
+    get 'new', to: 'inquiry#new'
+    post 'confirm', to: 'inquiry#confirm'
+    post 'thanks', to: 'inquiry#thanks'
   end
 
 end
