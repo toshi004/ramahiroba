@@ -13,7 +13,10 @@
         <%= @post.emotion %>
         <!--投稿お気に入りボタン-->
         <%= @post.text %>
-        <!--タグ-->
+        <p>タグ：</p>
+        <% @post_tags.each do |post_tag| %>
+          <%= link_to post_tag, posts_path(tag_id: list.id) %>
+        <% end %>
         <!--いいねボタン-->
         <%= @post.created_at.strftime('%Y/%m/%d') %>
       </div>

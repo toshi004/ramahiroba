@@ -1,7 +1,6 @@
 <!--ヘッダーからの遷移（タブメニュー）-->
 
 <!--お気に入り一覧からの遷移-->
-<!--タグ一覧からの遷移-->
 <div>
   <% @posts.each do |post| %>
     <div>
@@ -19,4 +18,14 @@
     </div>
   <% end %>
   <%= paginate @posts %>
+</div>
+
+<div>
+  <h4>タグ一覧</h4>
+  <% @tag_list.each do |list| %>
+    <div>
+      <%= link_to list.tag, posts_path(tag_id: list.id) %>
+      <p>(<%= list.posts.count %>)</p>
+    </div>
+  <% end %>
 </div>
