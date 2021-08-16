@@ -1,6 +1,9 @@
 class Tagmap < ApplicationRecord
 
-  has_many :posts, dependent: :destroy
-  has_many :tags,  dependent: :destroy
+  belongs_to :post
+  belongs_to :tag
+
+  validates :post_id, presence: true
+  validates :tag_id, presence: true
 
 end

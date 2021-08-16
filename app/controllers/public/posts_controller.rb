@@ -7,7 +7,9 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    tag_list = params[:post][:tag].split(nil)
     @post.save
+    @post.save_tag(tag_list)
     redirect_to thanks_path
   end
 
@@ -16,11 +18,13 @@ class Public::PostsController < ApplicationController
     # お気に入り投稿一覧からの遷移
     # タグ一覧からの遷移
     @posts = Post.page(params[:page]).per(10)
+    @tag_list = Tag.all
   end
 
   def show
     @user = User.find(params[:id])
     @post = Post.find(params[:id])
+    @post_tags = @post.tags
     @post_comment = PostComment.new
   end
 
