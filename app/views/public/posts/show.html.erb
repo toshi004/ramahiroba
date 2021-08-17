@@ -11,7 +11,7 @@
         <%= attachment_image_tag @post, :image, :fill, 50, 70, format: 'jpeg', fallback: "NoImage.jpg" %>
         <%= @post.title %>
         <%= @post.emotion %>
-        <!--投稿お気に入りボタン-->
+        <%= render 'post_favorites/favorite_button', post: @post %>
         <%= @post.text %>
 
         <p>タグ：</p>

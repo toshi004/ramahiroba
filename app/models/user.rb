@@ -13,19 +13,16 @@ class User < ApplicationRecord
 
   attachment :image
 
-  def follow(other_user)
-    unless self == other_user
-      self.user_favorites.find_or_create_by(follow_id: other_user.id)
-    end
+  def follow(user_id)
+    user_favorites.create(follow_id: user_id)
   end
 
-  def unfollow(other_user)
-    user_favorite = self.user_favorites.find_by(follow_id: other_user.id)
-    user_favorite.destroy if user_favorite
+  def unfollow(user_id)
+    user_favorites.find_by(follow_id: user_id).destroy
   end
 
-  def following?(other_user)
-    self.followings.include?(other_user)
+  def following?(user)
+    followings.include?(user)
   end
 
 end

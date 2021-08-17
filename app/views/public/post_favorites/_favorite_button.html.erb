@@ -1,0 +1,5 @@
+<% if current_user.favoriting?(post) %>
+  <%= link_to "★", upost_post_favorite_path(post.id), method: :delete %>
+<% else %>
+  <%= link_to "☆", post_post_favorites_path, method: :post %>
+<% end %>
