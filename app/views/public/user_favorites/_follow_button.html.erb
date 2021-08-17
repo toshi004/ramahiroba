@@ -1,5 +1,5 @@
 <% if current_user.following?(user) %>
-  <%= link_to "Unfollow", user_favorite_path(user.id), method: :delete %>
+  <%= link_to "★", user_favorite_path(user.id), method: :delete %>
 <% else %>
-  <%= link_to "follow", user_favorites_path, method: :post %>
+  <%= link_to "☆", user_favorites_path, method: :post %>
 <% end %>

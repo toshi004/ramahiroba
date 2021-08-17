@@ -21,7 +21,7 @@
 
     <div>
       <%= f.label :emotion, '気持ち' %>
-      <%= f.select, [["Happy","0"],["Angry","1"]["Sad","2"]["Fun","3"]], include_blank: "選択して下さい" %>
+      <%= f.select :emotion, Post.emotions.keys.to_a, include_blank: "選択して下さい" %>
     </div>
 
     <div>

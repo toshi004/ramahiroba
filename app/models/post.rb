@@ -16,6 +16,14 @@ class Post < ApplicationRecord
     likes.where(user_id: user.id).exists?
   end
 
+  def favorite(post_id)
+    post_favorites.create(user_id: current_user.id, post_id: post_id)
+  end
+
+  def favoriting?(post)
+    favoritings.include?(post)
+  end
+
   def start_time
     self.created_at
   end
