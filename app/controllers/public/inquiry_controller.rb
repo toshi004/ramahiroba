@@ -15,7 +15,7 @@ class Public::InquiryController < ApplicationController
 
   def thanks
     @inquiry = Inquiry.new(inquiry_params)
-    InquiryMailer.received_email(@inquiry).deliver
+    InquiryMailer.send_mail(@inquiry).deliver
 
     render :action => 'thanks'
   end

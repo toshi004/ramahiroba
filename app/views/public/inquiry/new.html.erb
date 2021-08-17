@@ -13,7 +13,7 @@
   <% end %>
 
   <div>
-    <%= form_with model: @inquiry, :url => confirm_path, local: true do |f| %>
+    <%= form_with model: @inquiry, :url => inquiry_confirm_path, local: true do |f| %>
 
       <div>
         <%= f.label :name, 'お名前' %>

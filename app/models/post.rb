@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   belongs_to :user
 
   has_many :post_comments, dependent: :destroy
-  has_many :goods, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
   has_many :tag_maps, dependent: :destroy
   has_many :tags, through: :tag_maps
@@ -11,6 +11,10 @@ class Post < ApplicationRecord
   attachment :image
 
   enum emotion: { happy: 0, angry: 1, sad: 2, fun: 3}
+
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
+  end
 
   def start_time
     self.created_at

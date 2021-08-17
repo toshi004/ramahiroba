@@ -13,17 +13,35 @@
         <%= @post.emotion %>
         <!--投稿お気に入りボタン-->
         <%= @post.text %>
+
         <p>タグ：</p>
         <% @post_tags.each do |post_tag| %>
           <%= link_to post_tag, posts_path(tag_id: list.id) %>
         <% end %>
-        <!--いいねボタン-->
+
+        <% if @post.liked_by?(current_user) %>
+          <p>
+            <%= link_to post_like_path(@post), method: :delete do %>
+              ♥<%= @post.likes.count %>いいね
+            <% end %>
+          </p>
+          <% else %>
+          <p>
+            <%= link_to post_likes_path(@post), method: :post do %>
+              ♡<%= @post.likes.count %>いいね
+            <% end %>
+          </p>
+
         <%= @post.created_at.strftime('%Y/%m/%d') %>
       </div>
+
+      <% if @post.user.id == current_user %>
       <div>
         <%= link_to "編集", edit_post_path(@post) %>
         <%= link_to "削除", post_path(@post), method: :delete %>
       </div>
+      <% end %>
+
     </div>
 
     <div>
