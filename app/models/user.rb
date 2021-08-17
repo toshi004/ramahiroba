@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :post_favorites, dependent: :destroy
   has_many :user_favorites, dependent: :destroy
   has_many :followings, through: :user_favorites, source: :follow
-  has_many :goods,  dependent: :destroy
+  has_many :likes,  dependent: :destroy
 
   attachment :image
 
