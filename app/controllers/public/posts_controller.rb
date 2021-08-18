@@ -7,10 +7,10 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    tag_list = params[:post][:tag].split(nil)
+    tag_list = params[:post][:tag].split(/[,|、]/)
     @post.save
     @post.save_tag(tag_list)
-    redirect_to thanks_path
+    redirect_to posts_thanks_path
   end
 
   def index
@@ -44,10 +44,13 @@ class Public::PostsController < ApplicationController
     redirect_to my_page_path
   end
 
+  def thanks
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:image, :title, :text, :emotion)
+    params.require(:post).permit(:image_id, :title, :text, :emotion, :tag_id, :tagmap_id)
   end
 
 end

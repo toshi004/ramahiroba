@@ -25,12 +25,12 @@ Rails.application.routes.draw do
     resources :users, except: [:new, :create]
       get 'my_page', to: 'users#my_page'
       get 'unsubscribe', to: 'users#unsubscribe'
+    get 'posts/thanks', to: 'posts#thanks'
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
       resources :likes, only: [:create, :destroy]
       resources :post_favorites, only: [:create, :destroy]
     end
-    get 'posts/thanks', to: 'posts#thanks'
     resources :user_favorites, only: [:create, :destroy]
     resources :tags, only: [:index]
     get 'inquiry/new', to: 'inquiry#new'
