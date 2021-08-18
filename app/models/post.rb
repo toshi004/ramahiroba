@@ -1,14 +1,15 @@
 class Post < ApplicationRecord
 
+  attachment :image
+
   belongs_to :user
 
   has_many :post_comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
   has_many :tag_maps, dependent: :destroy
-  has_many :tags, through: :tag_maps
+  has_many :tags, through: :tag_maps, dependent: :destroy
 
-  attachment :image
 
   enum emotion: { happy: 0, angry: 1, sad: 2, fun: 3}
 
@@ -28,18 +29,18 @@ class Post < ApplicationRecord
     self.created_at
   end
 
-  def save_tag(sent_tags)
-    current_tags = self.tags.pluck(:tag) unless self.tags.nil?
-    old_tags = current_tags - sent_tags
-    new_tags = sent_tags - current_tags
+  def save_tag(tag_lists)
+    tag_lists.each do |tag_list|
 
-    old_tags.each do |old|
-      self.post_tags.delete Tag.find_by(tag: old)
-    end
-
-    new_tags.each do |new|
-      new_post_tag = Tag.find_or_create_by(tag: new)
-      self.post_tags << new_post_tag
+      unless find_tag = Tag.find_by(tag: tag_list)
+        begin
+          self.tag_list.create!(tag: tag_list)
+        rescue
+          nil
+        end
+      else
+        Tagmap.create!(post_id: self.id, tag_id: find_tag.id)
+      end
     end
   end
 

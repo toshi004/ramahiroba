@@ -4,7 +4,6 @@
   <%= form_with model: @post, local: true do |f| %>
 
     <div>
-      <%= attachment_image_tag @post, :image, :fill, 30, 30, fallback: "NoImage.jpg" %>
       <%= f.label :image, '画像' %>
       <%= f.attachment_field :image %>
     </div>
@@ -27,8 +26,8 @@
     <div>
       <%= f.label :tag, 'タグ' %>
       <p>
-      半角スペースを入力することで複数のタグをつけることができます。<br/>
-      例:　動物 子育て 学習
+      ","または"、"を入力することで複数のタグをつけることができます。<br/>
+      例:　動物、子育て、学習
       </p>
       <%= f.text_field :tag %>
     </div>
