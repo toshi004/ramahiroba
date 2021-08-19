@@ -4,55 +4,60 @@
     <title>Ramahiroba</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
 
     <header>
-      <nav>
-        <div>
-          <%= link_to "ラマひろば", "/" %>
-          <%= link_to "おはなしする", new_post_path %>
-        </div>
-        <div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-info">
+        <div class="container">
+          <div class="navbar-brand">
+            <%= link_to "ラマひろば", "/", class: 'text-warning pr-3' %>
+            <%= link_to "おはなしする", new_post_path, class: 'text-white' %>
+          </div>
+
+        <div class="collapse navbar-collapse">
           <% if admin_signed_in? %>
-            <ul>
-              <li><%= link_to "ユーザー一覧", admin_users_path %></li>
-              <li><%= link_to "報告一覧", admin_post_comments_path %></li>
-              <li><%= link_to "ログアウト", admin_sign_out_path %></li>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: 'bg-white text-body mr-3' %></li>
+              <li class="nav-item"><%= link_to "報告一覧", admin_post_comments_path, class: 'bg-white text-body mr-3' %></li>
+              <li class="nav-item"><%= link_to "ログアウト", admin_sign_out_path, class: 'bg-white text-body' %></li>
             </ul>
           <% elsif user_signed_in? %>
-            <ul>
-              <li><%= link_to "マイページ", my_page_path %></li>
-              <li><%= link_to "おはなし一覧", posts_path %></li>
-              <li><%= link_to "おともだち一覧", users_path %></li>
-              <li><%= link_to "ログアウト", destroy_user_session_path %></li>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><%= link_to "マイページ", my_page_path, class: 'bg-white text-body mr-3' %></li>
+              <li class="nav-item"><%= link_to "おはなし一覧", posts_path, class: 'bg-white text-body mr-3' %></li>
+              <li class="nav-item"><%= link_to "おともだち一覧", users_path, class: 'bg-white text-body mr-3' %></li>
+              <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'bg-white text-body' %></li>
             </ul>
           <% else %>
-            <ul>
-              <li><%= link_to "About", about_path %></li>
-              <li><%= link_to "新規登録", new_user_registration_path %></li>
-              <li><%= link_to "ログイン", new_user_session_path %></li>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><%= link_to "About", about_path, class: 'bg-white text-body mr-3' %></li>
+              <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: 'bg-white text-body mr-3' %></li>
+              <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: 'bg-white text-body' %></li>
             </ul>
           <% end %>
         </div>
       </nav>
     </header>
 
-    <main>
+    <main class="mb-auto">
     <%= yield %>
     </main>
 
-    <footer>
-      <div>
-        <p>
-          |<%= link_to "Home", "/" %>
-          |<%= link_to "About", about_path %>
-          |<%= link_to "お問い合わせ", inquiry_new_path %>|
-        </p>
+    <footer class="bg-success pt-3">
+      <div class="container">
+        <div class="row no-gutters">
+          <p class="center-block mx-auto">
+            | <%= link_to "Home", "/", class: 'text-body' %>
+            | <%= link_to "About", about_path, class: 'text-body' %>
+            | <%= link_to "お問い合わせ", inquiry_new_path, class: 'text-body' %> |
+          </p>
+        </div>
       </div>
     </footer>
   </body>
