@@ -11,7 +11,17 @@
  * It is generally better to create a new file per style scope.
  *
  *= require simple_calendar
- *= require_tree .
- *= require_self
  */
+
 @import "bootstrap";
+
+ nav {
+  background-image: url(sky.png);
+  background-size: contain;
+  background-position: bottom;
+}
+
+ footer {
+   background-image: url(line_shibafu.png);
+   background-size: cover;
+ }
