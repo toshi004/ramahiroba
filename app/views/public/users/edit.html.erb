@@ -1,31 +1,40 @@
-<h2>プロフィール編集</h2>
+<div class="container">
+  <h2 class="text-center py-5">プロフィール編集</h2>
 
-<div>
-  <%= link_to "退会する", unsubscribe_path %>
-</div>
+  <div class="text-right">
+    <%= link_to "退会する", unsubscribe_path, class: 'btn btn-danger' %>
+  </div>
 
-<div>
-  <%= form_with model: @user, local: true do |f| %>
+  <div class="row justify-content-md-center">
+    <%= form_with model: @user, local: true do |f| %>
 
-    <div>
-      <%= attachment_image_tag @user, :image, :fill, 30, 30, fallback: "NoImage.jpg" %>
-      <%= f.label :image, 'アイコン' %>
-      <%= f.attachment_field :image %>
+    <div class="form-group row">
+      <label class="col-4 col-form-label">アイコン</label>
+      <div class="col-8">
+        <%= f.attachment_field :image %>
+      </div>
     </div>
 
-    <div>
-      <%= f.label :name, 'ユーザー名' %>
-      <%= f.text_field :name, autofocus: true, placeholder: "ユーザー名" %>
+    <div class="form-group row">
+      <label class="col-4 col-form-label">ユーザー名</label>
+      <div class="col-8">
+        <%= f.text_field :name, autofocus: true, placeholder: "ユーザー名" %>
+      </div>
     </div>
 
-    <div>
-      <%= f.label :introduction, '自己紹介' %>
-      <%= f.text_area :introduction %>
+    <div class="form-group row">
+      <label class="col-4 col-form-label">自己紹介</label>
+      <div class="col-8">
+        <%= f.text_area :introduction, size: '30x5' %>
+      </div>
     </div>
 
-    <div>
-      <%= f.submit "更新" %>
+    <div class="form-group row text-center">
+      <div class="col-12 mt-3">
+        <%= f.submit "更新", class: 'btn btn-primary' %>
+      </div>
     </div>
   <% end %>
+  </div>
 
 </div>
