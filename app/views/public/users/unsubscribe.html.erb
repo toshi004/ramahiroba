@@ -1,13 +1,16 @@
-<h1>本当に退会する？</h1>
+<div class="container p-3 text-center">
+  <h1 class="py-5">本当に退会する？</h1>
 
-<div>
-  <p>
-    退会すると、<br/>
-    今までの君のおはなしやコメントは消えちゃうよ？
-  </p>
-</div>
+  <div>
+    <p>
+      退会すると、<br/>
+      今までの君のおはなしやコメントは消えちゃうよ？
+    </p>
+  </div>
 
-<div>
-  <%= link_to "退会しない", my_page_path %>
-  <%= link_to "退会する", user_path(current_user), method: :delete %>
+  <div class="my-5">
+    <%= link_to "退会しない", my_page_path, class: 'btn btn-success mr-5' %>
+    <%= link_to "退会する", user_path(current_user), method: :delete, class: 'btn btn-danger ml-5' %>
+  </div>
+
 </div>
