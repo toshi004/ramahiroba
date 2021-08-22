@@ -1,22 +1,47 @@
-<div>
-  <%= attachment_image_tag @user, :image, :fill, 20, 20, format: 'jpeg', fallback: "NoImage.jpg" %>
-  <p><%= @user.name %></p>
-  <p><%= @user.introduction %></p>
-  <%= link_to "編集", edit_user_path(@user) %>
-</div>
+<div class="container p-3">
 
-<div>
-  <%= link_to "おきにいりおともだち一覧", users_path %>
-  <%= link_to "おきにいりおはなし一覧", posts_path %>
-  <%= link_to "Myおはなし一覧", posts_path %>
-</div>
+  <div class="row my-5 w-75 mx-auto">
+    <div class="col-5 border border-dark rounded mx-5 py-3 px-4 bg-light">
 
-<%= month_calendar events: @posts do |date, posts| %>
-  <%= date.day %>
-
-  <% @posts.each do |post| %>
-    <div>
-      <%= link_to post.title %>
+      <div class="row">
+        <div class="col-5">
+          <%= attachment_image_tag @user, :image, :fill, 20, 20, format: 'jpeg', fallback: "NoImage.jpg", class: 'rounded-circle' %>
+        </div>
+        <div class="col-7 text-center pt-4">
+          <p class="border-bottom"><%= @user.name %></p>
+        </div>
+        <!--レイアウト調整-->
+        <div class="col-4"></div>
+        <div class="col-8">
+          <p class="border"><%= @user.introduction %></p>
+        </div>
+        <div class="col-12 text-right pt-3">
+          <%= link_to "編集", edit_user_path(@user) %>
+        </div>
+      </div>
     </div>
+
+    <div class="col-5 text-right pr-5">
+      <div class="py-3">
+        <%= link_to "おきにいりおともだち一覧", users_path, class: 'btn btn-warning text-white' %>
+      </div>
+      <div class="py-3">
+        <%= link_to "おきにいりおはなし一覧", posts_path, class: 'btn btn-success' %>
+      </div>
+      <div class="py-3">
+        <%= link_to "Myおはなし一覧", posts_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+
+  <%= month_calendar events: @posts do |date, posts| %>
+    <%= date.day %>
+
+    <% @posts.each do |post| %>
+      <div>
+        <%= link_to post.title %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+
+</div>
