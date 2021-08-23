@@ -1,5 +1,5 @@
-<div>
-  <h2>お問い合わせ</h2>
+<div class="container">
+  <h2 class="text-center py-5">お問い合わせ</h2>
 
   <% if @inquiry.errors.any? %>
     <div class="alert alert-danger" role="alert">
@@ -12,26 +12,34 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="row justify-content-md-center">
     <%= form_with model: @inquiry, :url => inquiry_confirm_path, local: true do |f| %>
 
-      <div>
-        <%= f.label :name, 'お名前' %>
-        <%= f.text_field :name, autofocus: true %>
+      <div class="form-group row">
+        <label class="col-6 col-form-label">お名前</label>
+        <div class="col-6">
+          <%= f.text_field :name, autofocus: true %>
+        </div>
       </div>
 
-      <div>
-        <%= f.label :email, 'メールアドレス' %>
-        <%= f.email_field :email %>
+      <div class="form-group row">
+        <label class="col-6 col-form-label">メールアドレス</label>
+        <div class="col-6">
+          <%= f.email_field :email %>
+        </div>
       </div>
 
-      <div>
-        <%= f.label :message, 'お問い合わせ内容' %>
-        <%= f.text_area :message %>
+      <div class="form-group row">
+        <label class="col-6 col-form-label">お問い合わせ内容</label>
+        <div class="col-6">
+          <%= f.text_area :message, size: '30x5' %>
+        </div>
       </div>
 
-      <div>
-        <%= f.submit "確認" %>
+      <div class="form-group row">
+        <div class="mx-auto">
+          <%= f.submit "確認", class: 'btn btn-info' %>
+        </div>
       </div>
 
     <% end %>

@@ -37,9 +37,9 @@
   <%= month_calendar events: @posts do |date, posts| %>
     <%= date.day %>
 
-    <% @posts.each do |post| %>
+    <% posts.each do |post| %>
       <div>
-        <%= link_to post.title %>
+        <%= link_to post.title, post %>
       </div>
     <% end %>
   <% end %>
