@@ -1,29 +1,37 @@
-<div>
-  <h2>お問い合わせ</h2>
+<div class="container">
+  <h2 class="text-center py-5">お問い合わせ</h2>
 
-  <div>
+  <div class="row justify-content-md-center">
     <%= form_with model: @inquiry, :url => inquiry_thanks_path, local: true do |f| %>
 
-      <div>
-        <%= f.label :name, 'お名前' %>
+      <div class="form-group row">
+        <label class="col-6 col-form-label">お名前</label>
         <%= f.hidden_field :name %>
-        <%= @inquiry.name %>
+        <div class="col-6">
+          <%= @inquiry.name %>
+        </div>
       </div>
 
-      <div>
-        <%= f.label :email, 'メールアドレス' %>
+      <div class="form-group row">
+        <label class="col-6 col-form-label">メールアドレス</label>
         <%= f.hidden_field :email %>
-        <%= @inquiry.email %>
+        <div class="col-6">
+          <%= @inquiry.email %>
+        </div>
       </div>
 
-      <div>
-        <%= f.label :message, 'お問い合わせ内容' %>
+      <div class="form-group row">
+        <label class="col-6 col-form-label">お問い合わせ内容</label>
         <%= f.hidden_field :message %>
-        <%= @inquiry.message %>
+        <div class="col-6 text-wrap">
+          <%= @inquiry.message %>
+        </div>
       </div>
 
-      <div>
-        <%= f.submit "送信" %>
+      <div class="form-group row">
+        <div class="mx-auto py-3">
+          <%= f.submit "送信", class: 'btn btn-success' %>
+        </div>
       </div>
     <% end %>
   </div>

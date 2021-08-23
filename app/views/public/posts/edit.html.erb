@@ -1,38 +1,39 @@
-<h2>おはなし編集</h2>
-
-<div>
-  <%= form_with model: @post, local: true do |f| %>
+<div class="container">
+  <h2>おはなし編集</h2>
 
   <div>
-    <%= attachment_image_tag @post, :image, :fill, 30, 30, fallback: "NoImage.jpg" %>
-    <%= f.label :image, '画像' %>
-    <%= f.attachment_field :image %>
-  </div>
+    <%= form_with model: @post, local: true do |f| %>
 
-  <div>
-    <%= f.label :title, 'タイトル' %>
-    <%= f.text_field :title %>
-  </div>
+    <div>
+      <%= attachment_image_tag @post, :image, :fill, 30, 30, fallback: "NoImage.jpg" %>
+      <%= f.label :image, '画像' %>
+      <%= f.attachment_field :image %>
+    </div>
 
-  <div>
-    <%= f.label :text, '本文' %>
-    <%= f.text_area %>
-  </div>
+    <div>
+      <%= f.label :title, 'タイトル' %>
+      <%= f.text_field :title %>
+    </div>
 
-  <div>
-    <%= f.label :emotion, '気持ち' %>
-    <%= f.select, [["Happy","0"],["Angry","1"]["Sad","2"]["Fun","3"]], include_blank: "選択して下さい" %>
-  </div>
+    <div>
+      <%= f.label :text, '本文' %>
+      <%= f.text_area %>
+    </div>
 
-  <div>
-    <%= f.label :tag, 'タグ' %>
-    <%= f.text_field :tag %>
-  </div>
+    <div>
+      <%= f.label :emotion, '気持ち' %>
+      <%= f.select, [["Happy","0"],["Angry","1"]["Sad","2"]["Fun","3"]], include_blank: "選択して下さい" %>
+    </div>
 
-  <div>
-    <%= f.submit "更新" %>
-  </div>
-<% end %>
+    <div>
+      <%= f.label :tag, 'タグ' %>
+      <%= f.text_field :tag %>
+    </div>
 
+    <div>
+      <%= f.submit "更新" %>
+    </div>
+  <% end %>
+  </div>
 
 </div>
