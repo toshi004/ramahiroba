@@ -1,11 +1,15 @@
-<div>
+<div class="container p-3">
 
-  <div>
-    <%= attachment_image_tag @user, :image, :fill, 20, 20, format: 'jpeg', fallback: "NoImage.jpg" %>
-    <%= link_to @user.name, user_path(@user) %>
+  <div class="row">
+    <div class="col-4">
+      <%= attachment_image_tag @user, :image, :fill, 20, 20, format: 'jpeg', fallback: "NoImage.jpg" %>
+    </div>
+    <div class="col-4">
+      <p class="border-bottom"><%= link_to @user.name, user_path(@user) %></p>
+    </div>
   </div>
 
-  <div>
+  <div class="row">
     <div>
       <div>
         <%= attachment_image_tag @post, :image, :fill, 50, 70, format: 'jpeg', fallback: "NoImage.jpg" %>
