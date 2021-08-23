@@ -1,39 +1,56 @@
-<h2>新しいおはなし</h2>
+<div class="container">
+  <h2 class="text-center py-5">新しいおはなし</h2>
 
-<div>
-  <%= form_with model: @post, local: true do |f| %>
+  <div class="row justify-content-md-center">
+    <%= form_with model: @post, local: true do |f| %>
 
-    <div>
-      <%= f.label :image, '画像' %>
-      <%= f.attachment_field :image %>
-    </div>
+      <div class="form-group row">
+        <label class="col-4 col-form-label">タイトル</label>
+        <div class="col-8">
+          <%= f.text_field :title %>
+        </div>
+      </div>
 
-    <div>
-      <%= f.label :title, 'タイトル' %>
-      <%= f.text_field :title %>
-    </div>
+      <div class="form-group row">
+        <label class="col-4 col-form-label">画像</label>
+        <div class="col-8">
+          <%= f.attachment_field :image %>
+        </div>
+      </div>
 
-    <div>
-      <%= f.label :text, '本文' %>
-      <%= f.text_area :text %>
-    </div>
+      <div class="form-group row">
+        <label class="col-4 col-form-label">本文</label>
+        <div class="col-8">
+          <%= f.text_area :text %>
+        </div>
+      </div>
 
-    <div>
-      <%= f.label :emotion, '気持ち' %>
-      <%= f.select :emotion, Post.emotions.keys.to_a, include_blank: "選択して下さい" %>
-    </div>
+      <div class="form-group row">
+        <label class="col-4 col-form-label">気持ち</label>
+        <div class="col-8">
+          <%= f.select :emotion, Post.emotions.keys.to_a, include_blank: "選択して下さい" %>
+        </div>
+      </div>
 
-    <div>
-      <%= f.label :tag, 'タグ' %>
-      <p>
-      ","または"、"を入力することで複数のタグをつけることができます。<br/>
-      例:　動物、子育て、学習
-      </p>
-      <%= f.text_field :tag %>
-    </div>
+      <div class="form-group row">
+        <label class="col-4 col-form-label">タグ</label>
+        <div class="col-8">
+          <p class="small">
+          ","または"、"を入力することで<br/>
+          複数のタグをつけることができます。<br/>
+          例:　動物、子育て、学習
+          </p>
+          <%= f.text_field :tag %>
+        </div>
+      </div>
 
-    <div>
-      <%= f.submit "おはなしする" %>
-    </div>
-  <% end %>
+      <div class="form-group row">
+        <div class="mx-auto py-3">
+          <%= f.submit "おはなしする", class: 'btn btn-warning' %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+
 </div>
