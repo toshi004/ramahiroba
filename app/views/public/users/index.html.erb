@@ -1,11 +1,19 @@
-<h2>おともだち一覧</h2>
+<div class="container">
+  <h2 class="py-5 pl-5">おともだち一覧</h2>
 
-<div>
-  <% @users.each do |user| %>
-  <div>
-    <%= attachment_image_tag user, :image, :fill, 20, 20, format: 'jpeg', fallback: "NoImage.jpg" %>
-    <p><%= user.name %></p>
+  <div class="row w-75 mx-auto">
+    <% @users.each do |user| %>
+    <div class="col-6 d-flex flex-row">
+      <div class="pl-5 ml-5">
+        <%= link_to user_path(user.id) do %>
+          <%= attachment_image_tag user, :image, format: 'jpeg', fallback: "NoImage.jpg", size: '50x50', class: 'rounded-circle' %>
+        <% end %>
+      </div>
+      <div class="ml-5 mr-3 pt-3">
+        <p class="mb-0"><%= link_to user.name, user_path(user.id), class: 'border-bottom' %></p>
+      </div>
+    </div>
+    <% end %>
+    <%= paginate @users %>
   </div>
-  <% end %>
-  <%= paginate @users %>
 </div>
