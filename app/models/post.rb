@@ -7,34 +7,27 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
-  has_many :tag_maps, dependent: :destroy
-  has_many :tags, through: :tag_maps, dependent: :destroy
+  has_many :tagmaps, dependent: :destroy
+  has_many :tags, through: :tagmaps, dependent: :destroy
 
+  accepts_nested_attributes_for :tags, allow_destroy: true
 
   enum emotion: { happy: 0, angry: 1, sad: 2, fun: 3}
-
-  def liked_by?(user)
-    likes.where(user_id: user.id).exists?
-  end
-
-  def favorite(post_id)
-    post_favorites.create(user_id: current_user.id, post_id: post_id)
-  end
-
-  def favoriting?(post)
-    favoritings.include?(post)
-  end
 
   def start_time
     self.created_at
   end
 
-  def save_tag(tag_lists)
-    tag_lists.each do |tag_list|
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
+  end
 
-      unless find_tag = Tag.find_by(tag: tag_list)
+  def save_tags(tag_list)
+    tag_list.each do |tag|
+
+      unless find_tag = Tag.find_by(tag_name: tag.downcase)
         begin
-          self.tag_list.create!(tag: tag_list)
+          self.tags.create!(tag_name: tag)
         rescue
           nil
         end

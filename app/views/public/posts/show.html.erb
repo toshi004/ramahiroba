@@ -1,86 +1,112 @@
 <div class="container p-3">
 
-  <div class="row">
-    <div class="col-3">
-      <%= attachment_image_tag @user, :image, :fill, 20, 20, format: 'jpeg', fallback: "NoImage.jpg" %>
+  <div class="row w-75 py-3">
+    <div class="col-3 text-right pr-0">
+      <%= attachment_image_tag @post.user, :image, format: 'jpeg', fallback: "NoImage.jpg", size: '50x50', class: 'rounded-circle' %>
     </div>
 
-    <div class="col-5">
-      <p class="border-bottom"><%= link_to @user.name, user_path(@user) %></p>
+    <div class="col-4 pt-2 pl-4">
+      <p><%= link_to @post.user.name, user_path(@post.user), class: 'border-bottom border-info text-body h5' %></p>
     </div>
   </div>
 
-  <div class="border">
-    <div　class="border">
-      <div class="row">
-        <div class="col-3">
-          <%= attachment_image_tag @post, :image, :fill, 50, 70, format: 'jpeg', fallback: "NoImage.jpg" %>
+  <div class="border border-dark w-75 mx-auto">
+    <div　class="border border-dark">
+      <div class="row px-3 pt-3">
+        <div class="col-4">
+          <%= attachment_image_tag @post, :image, format: 'jpeg', fallback: "NoImage.jpg", size: '200x200' %>
         </div>
 
-        <div class="col-5">
-          <div>
-            <%= @post.title %>
-          </div>
-          <div>
-            <%= @post.emotion %>
-          </div>
-          <div>
-            <%= render 'post_favorites/favorite_button', post: @post %>
-          </div>
-          <div>
-            <%= @post.text %>
+        <div class="col-8 pl-5">
+          <div class="row">
+            <div class="col-8">
+              <p class="h4 border-bottom"><%= @post.title %></p>
+            </div>
+            <div class="col-2 text-right">
+              <%= @post.emotion %>
+            </div>
+            <div class="col-2">
+              <%#= render 'public/post_favorites/favorite_button', post: @post %>
+            </div>
           </div>
 
+          <div class="row">
+            <div class="col-10 p-3">
+              <%= @post.text %>
+            </div>
+            <div class="col-2">
+              <% if @post.user.id == current_user.id %>
+              <div>
+                <%= link_to "編集", edit_post_path(@post), class: 'btn btn-sm btn-success mb-2' %><br>
+                <%= link_to "削除", post_path(@post), method: :delete, class: 'btn btn-sm btn-danger' %>
+              </div>
+              <% end %>
+            </div>
+          </div>
           <div>
-            <p>タグ：</p>
+            <p>
+            タグ：
             <% @post_tags.each do |post_tag| %>
-              <%= link_to post_tag, posts_path(tag_id: list.id) %>
+              <%= link_to post_tag.tag_name, posts_path(tag.id), class: 'text-success' %>
             <% end %>
+            </p>
           </div>
 
-          <% if @post.liked_by?(current_user) %>
-            <p>
-              <%= link_to post_like_path(@post), method: :delete do %>
-                ♥<%= @post.likes.count %>いいね
+          <div class="row pt-4">
+            <div class="col-6">
+              <% if @post.liked_by?(current_user) %>
+                <%= link_to post_like_path(@post), method: :delete do %>
+                  <p class="text-danger">♥<%= @post.likes.count %>いいね</p>
+                <% end %>
+              <% else %>
+                <%= link_to post_likes_path(@post), method: :post do %>
+                  <p class="text-danger">♡<%= @post.likes.count %>いいね</p>
+                <% end %>
               <% end %>
-            </p>
-            <% else %>
-            <p>
-              <%= link_to post_likes_path(@post), method: :post do %>
-                ♡<%= @post.likes.count %>いいね
-              <% end %>
-            </p>
+            </div>
+            <div class="col-6">
+              <%= @post.created_at.strftime('%Y/%m/%d') %>
+            </div>
+          </div>
 
-          <%= @post.created_at.strftime('%Y/%m/%d') %>
         </div>
-
-      <% if @post.user.id == current_user %>
-      <div>
-        <%= link_to "編集", edit_post_path(@post), class: 'btn btn-sm btn-success' %>
-        <%= link_to "削除", post_path(@post), method: :delete, class: 'btn btn-sm btn-danger' %>
-      </div>
-      <% end %>
       </div>
     </div>
 
     <!--コメント欄-->
-    <div>
-      <div>
-        <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
-          <%= f.text_area :comment, rows: '1', placeholder: "コメントを書く" %>
-          <%= f.submit "送信" %>
+    <div class="border border-dark w-75 mx-auto">
+      <div class="border border-dark">
+        <%= form_with(model: [@post, @post_comment] , local: true) do |f| %>
+          <div class="form-group row">
+            <div class="col-10 pt-3 px-4">
+              <%= f.text_area :comment, rows: '1', placeholder: "コメントを書く", size: '90x1' %>
+            </div>
+            <div class="col-2 pt-3 text-center">
+              <%= f.submit "送信", class: 'btn-sm btn-info' %>
+            </div>
+          </div>
         <% end %>
       </div>
       <div>
-        <%= @post.post_comments.each do |post_comment| %>
-          <%= attachment_image_tag post_comment.user, :image, :fill, 20, 20, format: 'jpeg', fallback: "NoImage.jpg" %>
-          <%= link_to post_comment.user.name, user_path(post_comment.user) %>
-          <%= post_comment.comment %>
+        <% @post.post_comments.each do |post_comment| %>
+          <div class="row pt-2">
+            <div class="col-1 px-4">
+              <%= attachment_image_tag post_comment.user, :image, format: 'jpeg', fallback: "NoImage.jpg", size: '40x40', class: 'rounded-circle' %>
+            </div>
+            <div class="col-2 pt-1 text-center">
+              <%= link_to post_comment.user.name, user_path(post_comment.user) %>
+            </div>
+            <div class="col-7 pt-1">
+              <%= post_comment.comment %>
+            </div>
 
-          <% if post_comment.user == current_user %>
-            <%= link_to "削除", post_post_comment_path(post_comment) %>
-          <% end %>
+            <div class="col-2 text-right pr-4">
+              <% if post_comment.post.user.id == current_user.id %>
+                <%= link_to "削除", post_post_comment_path(post_comment), class: 'btn btn-sm btn-danger' %>
+              <% end %>
+            </div>
           <!--ポップアップ出してから削除-->
+          </div>
         <% end %>
       </div>
     </div>

@@ -7,10 +7,13 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    tag_list = params[:post][:tag].split(/[,|、]/)
-    @post.save
-    @post.save_tag(tag_list)
-    redirect_to posts_thanks_path
+    if @post.save!
+      tag_list = params[:post][:tag_name].delete(" ").split(/[,|、]/)
+      @post.save_tags(tag_list)
+      redirect_to posts_thanks_path
+    else
+      redirect_to new_post_path
+    end
   end
 
   def index
@@ -22,7 +25,6 @@ class Public::PostsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     @post = Post.find(params[:id])
     @post_tags = @post.tags
     @post_comment = PostComment.new
@@ -50,7 +52,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image_id, :title, :text, :emotion, :tag_id, :tagmap_id)
+    params.require(:post).permit(:image, :title, :text, :emotion, { tag_name: [] } )
   end
 
 end
