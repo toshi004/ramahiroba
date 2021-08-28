@@ -1,6 +1,14 @@
 class Tag < ApplicationRecord
 
-  has_many :tag_maps, dependent: :destroy
-  has_many :posts, through: :tag_maps, dependent: :destroy
+  before_save :downcase_tag_name
+
+  has_many :tagmaps, dependent: :destroy
+  has_many :posts, through: :tagmaps, dependent: :destroy
+
+  private
+
+  def downcase_tag_name
+    self.tag_name.downcase!
+  end
 
 end

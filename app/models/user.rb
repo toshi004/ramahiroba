@@ -25,4 +25,13 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
+  # 投稿お気に入り
+  # # def favorite
+  # #   post_favorites.create(user_id: current_user.id, post_id: post_id)
+  # # end
+
+  # def favoriting?(post)
+  #   favoriting.include?(post)
+  # end
+
 end
