@@ -1,17 +1,17 @@
 <div class="container">
   <h2 class="text-center py-5">報告詳細</h2>
 
-  <h4>
+  <h4 class="border-bottom w-25 mx-auto text-center mb-3">
     <%= link_to admin_user_path(@user) do %>
-    <%= @user.name %>
+      <%= @user.name %>
     <% end %>
   </h4>
 
-  <div>
+  <div class="border border-dark text-center w-50 mx-auto p-3">
     <%= @post_comment.comment %>
   </div>
 
-  <div>
-    <%= link_to "取り消し", admin_post_comment_path(@post_comment), method: :delete %>
+  <div class="text-center py-4">
+    <%= link_to "取り消し", admin_post_comment_path(@post_comment), method: :delete, class: 'btn btn-warning text-white' %>
   </div>
 </div>

@@ -12,7 +12,7 @@ class Public::PostsController < ApplicationController
       @post.save_tags(tag_list)
       redirect_to posts_thanks_path
     else
-      redirect_to new_post_path
+      render new_post_path
     end
   end
 
@@ -37,7 +37,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @post.update(post_params)
-    redirect_to post_path(@post)
+    redirect_to posts_thanks_path
   end
 
   def destroy

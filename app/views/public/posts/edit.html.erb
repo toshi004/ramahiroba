@@ -1,38 +1,47 @@
 <div class="container">
-  <h2>おはなし編集</h2>
+  <h2 class="text-center py-5">おはなし編集</h2>
 
-  <div>
+  <div class="row justify-content-md-center">
     <%= form_with model: @post, local: true do |f| %>
 
-    <div>
-      <%= attachment_image_tag @post, :image, :fill, 30, 30, fallback: "NoImage.jpg" %>
-      <%= f.label :image, '画像' %>
-      <%= f.attachment_field :image %>
+    <div class="form-group row">
+      <label class="col-4 col-form-label">タイトル</label>
+      <div class="col-8">
+        <%= f.text_field :title %>
+      </div>
     </div>
 
-    <div>
-      <%= f.label :title, 'タイトル' %>
-      <%= f.text_field :title %>
+    <div class="form-group row">
+      <label class="col-4 col-form-label">画像</label>
+      <div class="col-8">
+        <%= attachment_image_tag @post, :image, fallback: "NoImage.jpg", size: '50x50' %>
+      </div>
+      <div class="col-4"></div> <!-- レイアウト調整用 -->
+      <div class="col-8 text-center">
+        <%= f.attachment_field :image %>
+      </div>
     </div>
 
-    <div>
-      <%= f.label :text, '本文' %>
-      <%= f.text_area %>
+    <div class="form-group row">
+      <label class="col-4 col-form-label">本文</label>
+      <div class="col-8">
+        <%= f.text_area :text, size: '35x10' %>
+      </div>
     </div>
 
-    <div>
-      <%= f.label :emotion, '気持ち' %>
-      <%= f.select, [["Happy","0"],["Angry","1"]["Sad","2"]["Fun","3"]], include_blank: "選択して下さい" %>
+    <div class="form-group row">
+      <label class="col-4 col-form-label">気持ち</label>
+      <div class="col-8">
+        <%= f.select :emotion, Post.emotions.keys.to_a, include_blank: "選択して下さい" %>
+      </div>
     </div>
 
-    <div>
-      <%= f.label :tag, 'タグ' %>
-      <%= f.text_field :tag %>
+    <div class="form-group row py-3">
+      <div class="col-12 text-center">
+        <%= f.submit "更新", class: 'btn btn-success' %>
+      </div>
     </div>
 
-    <div>
-      <%= f.submit "更新" %>
-    </div>
   <% end %>
   </div>
 
