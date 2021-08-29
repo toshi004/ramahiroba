@@ -1,11 +1,11 @@
 <div class="container">
   <h2 class="text-center py-5">報告一覧</h2>
 
-  <table class="table">
+  <table class="table table-sm">
     <thead class="thead-light">
       <tr>
         <th>ユーザー名</th>
-        <th>コメントID</th>
+        <th class="text-center">コメントID</th>
       </tr>
     </thead>
     <tbody>
@@ -16,7 +16,7 @@
           <%= post_comment.user.name %>
           <% end %>
         </td>
-        <td>
+        <td class="text-center">
           <%= link_to admin_post_comment_path(post_comment.id) do %>
           <%= post_comment.id %>
           <% end %>

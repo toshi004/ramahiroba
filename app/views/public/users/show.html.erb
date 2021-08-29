@@ -4,7 +4,7 @@
       <div class="border rounded w-75">
         <div class="d-flex flex-row">
           <div class="p-4">
-            <%= attachment_image_tag @user, :image_id, format: 'jpeg', fallback: "NoImage.jpg", size: '50x50', class: 'rounded-circle' %>
+            <%= attachment_image_tag @user, :image, format: 'jpeg', fallback: "NoImage.jpg", size: '50x50', class: 'rounded-circle' %>
           </div>
           <p class="h5 pt-4 mt-2"><%= @user.name %></p>
         　<!--お気に入りボタン-->
@@ -27,7 +27,7 @@
     <div class="col-6">
       <% @posts.each do |post| %>
       <div class="border border-dark">
-        <%= attachment_image_tag post, :image_id, :fill, 20, 20, format: 'jpeg', fallback: "NoImage.jpg" %>
+        <%= attachment_image_tag post, :image, :fill, 20, 20, format: 'jpeg', fallback: "NoImage.jpg" %>
         <p><%= post.title %></p>
         <p><%= post.emotion %></p>
         <p><%= post.text %></p>

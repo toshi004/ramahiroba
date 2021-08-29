@@ -1,11 +1,11 @@
 <div class="container">
   <h2 class="text-center py-5">ユーザー一覧</h2>
 
-  <table class="table">
+  <table class="table table-sm">
     <thead class="thead-light">
       <tr>
         <th>ユーザー名</th>
-        <th>ステータス</th>
+        <th class="text-center">ステータス</th>
       </tr>
     </thead>
     <tbody>
@@ -16,7 +16,7 @@
           <%= user.name %>
           <% end %>
         </td>
-        <td><%= user.suspended %></td>
+        <td class="text-center"><%= user.suspended %></td>
       </tr>
       <% end %>
     </tbody>
