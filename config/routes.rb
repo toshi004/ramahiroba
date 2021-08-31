@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       get 'my_page', to: 'users#my_page'
       get 'unsubscribe', to: 'users#unsubscribe'
     get 'posts/thanks', to: 'posts#thanks'
+    get 'posts/pick_up', to: 'posts#pick_up'
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
       resources :likes, only: [:create, :destroy]

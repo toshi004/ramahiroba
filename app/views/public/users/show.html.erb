@@ -1,23 +1,28 @@
-<div class="container">
+<div class="container p-3">
   <div class="row">
     <div class="col-6 py-5">
-      <div class="border rounded w-75">
-        <div class="d-flex flex-row">
-          <div class="p-4">
-            <%= attachment_image_tag @user, :image, format: 'jpeg', fallback: "NoImage.jpg", size: '50x50', class: 'rounded-circle' %>
+      <div class="border rounded w-75 bg-light">
+        <div class="row">
+          <div class="col-3 p-4">
+            <%= attachment_image_tag @user, :image, format: 'jpeg', fallback: "NoImage.jpg", size: '60x60', class: 'rounded-circle' %>
           </div>
-          <p class="h5 pt-4 mt-2"><%= @user.name %></p>
+          <div class="col-6">
+            <p class="h5 pt-4 mt-3"><%= @user.name %></p>
+          </div>
         　<!--お気に入りボタン-->
-          <div class="col-7 text-right pt-3">
-            <% if current_user.following?(@user) %>
-              <%= link_to "★", user_favorite_path(user.id), method: :delete %>
+          <div class="col-2 mt-4 pt-3">
+            <% if @user.id == current_user.id %>
             <% else %>
-              <%= link_to "☆", user_favorites_path, method: :post %>
+              <% if current_user.following?(@user) %>
+                <%= link_to "★", user_favorite_path(user.id), method: :delete %>
+              <% else %>
+                <%= link_to "☆", user_favorites_path, method: :post %>
+              <% end %>
             <% end %>
           </div>
         </div>
         <div class="d-flex flex-row-reverse">
-          <div class="border w-50 m-3">
+          <div class="border bg-white w-50 ">
             <p><%= @user.introduction %></p>
           </div>
         </div>
@@ -26,8 +31,9 @@
 
     <div class="col-6">
       <% @posts.each do |post| %>
-      <div class="border border-dark">
-        <%= attachment_image_tag post, :image, :fill, 20, 20, format: 'jpeg', fallback: "NoImage.jpg" %>
+      <div class="border border-dark my-3">
+        <div class="row"></div>
+        <%= attachment_image_tag post, :image, format: 'jpeg', fallback: "NoImage.jpg", size: '50x50' %>
         <p><%= post.title %></p>
         <p><%= post.emotion %></p>
         <p><%= post.text %></p>
