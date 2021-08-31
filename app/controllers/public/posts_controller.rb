@@ -17,11 +17,10 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    # ヘッダーからの遷移（タブメニュー）
-    # お気に入り投稿一覧からの遷移
-    # タグ一覧からの遷移
-    @posts = Post.page(params[:page]).per(10)
-    @tag_list = Tag.all
+    @posts = Post.order("created_at DESC").page(params[:page]).per(8)
+  end
+
+  def pick_up
   end
 
   def show

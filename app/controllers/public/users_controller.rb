@@ -11,7 +11,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = Post.page(params[:id]).per(4)
+    @posts = @user.posts.order("created_at DESC").page(params[:page]).per(4)
   end
 
   def my_page
@@ -42,7 +42,7 @@ class Public::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :image_id, :introduction)
+    params.require(:user).permit(:name, :image, :introduction)
   end
 
 end

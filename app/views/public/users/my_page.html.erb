@@ -4,8 +4,8 @@
     <div class="col-5 border border-dark rounded mx-5 py-3 px-4 bg-light">
 
       <div class="row">
-        <div class="col-5">
-          <%= attachment_image_tag @user, :image, :fill, 20, 20, format: 'jpeg', fallback: "NoImage.jpg", class: 'rounded-circle' %>
+        <div class="col-5 py-2 px-3">
+          <%= attachment_image_tag @user, :image, format: 'jpeg', fallback: "NoImage.jpg", size: '70x70', class: 'rounded-circle' %>
         </div>
         <div class="col-7 text-center pt-4">
           <p class="border-bottom"><%= @user.name %></p>
