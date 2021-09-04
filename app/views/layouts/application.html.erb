@@ -12,33 +12,63 @@
 
   <body class="d-flex flex-column vh-100">
 
-    <header class="shadow-lg">
-      <nav class="navbar navbar-expand-lg navbar-light p-4">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <div class="navbar-brand">
-            <%= link_to "ラマひろば", "/", class: 'text-warning pr-3' %>
-            <%= link_to "おはなしする", new_post_path, class: 'text-white' %>
+              <%= link_to "ラマひろば", "/", class: 'text-warning pr-3' %>
+              <%= link_to new_post_path do %>
+                <%= image_tag 'speech.png', size: '80x80' %>
+              <% end %>
           </div>
 
         <div class="collapse navbar-collapse">
           <% if admin_signed_in? %>
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: 'bg-white text-body mr-3' %></li>
-              <li class="nav-item"><%= link_to "報告一覧", admin_post_comments_path, class: 'bg-white text-body mr-3' %></li>
-              <li class="nav-item"><%= link_to "ログアウト", admin_sign_out_path, method: :delete, class: 'bg-white text-body' %></li>
+              <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: 'text-body mr-3' %></li>
+              <li class="nav-item"><%= link_to "報告一覧", admin_post_comments_path, class: 'text-body mr-3' %></li>
+              <li class="nav-item"><%= link_to "ログアウト", admin_sign_out_path, method: :delete, class: 'text-body' %></li>
             </ul>
           <% elsif user_signed_in? %>
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item"><%= link_to "マイページ", my_page_path, class: 'bg-white text-body mr-3' %></li>
-              <li class="nav-item"><%= link_to "おはなし一覧", posts_path, class: 'bg-white text-body mr-3' %></li>
-              <li class="nav-item"><%= link_to "おともだち一覧", users_path, class: 'bg-white text-body mr-3' %></li>
-              <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'bg-white text-body' %></li>
+              <li class="nav-item">
+                <%= link_to my_page_path do %>
+                  <%= image_tag 'cloud_mypage.png', size: '100x100' %>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to posts_path do %>
+                  <%= image_tag 'cloud_postindex.png', size: '100x100' %>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to users_path do %>
+                  <%= image_tag 'cloud_userindex.png', size: '100x100' %>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <%= image_tag 'cloud_signout.png', size: '100x100' %>
+                <% end %>
+              </li>
             </ul>
           <% else %>
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item"><%= link_to "About", about_path, class: 'bg-white text-body mr-3' %></li>
-              <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: 'bg-white text-body mr-3' %></li>
-              <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: 'bg-white text-body' %></li>
+              <li class="nav-item">
+                <%= link_to about_path do %>
+                  <%= image_tag 'cloud_about.png', size: '100x100' %>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_user_registration_path do %>
+                  <%= image_tag 'cloud_registration.png', size: '100x100' %>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_user_session_path do %>
+                  <%= image_tag 'cloud_session.png', size: '100x100' %>
+                <% end %>
+              </li>
             </ul>
           <% end %>
         </div>

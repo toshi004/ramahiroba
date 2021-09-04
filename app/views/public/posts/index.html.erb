@@ -1,9 +1,8 @@
 <div class="container p-5">
 
-  <!--ヘッダーからの遷移（タブメニュー）-->
   <nav>
-    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <ul class="nav nav-tabs">
+    <div class="bg-white">
+      <ul class="nav nav-pills nav-tabs" id="nav-tab">
         <li class="nav-item">
           <a href="#tab1" class="nav-link active" data-toggle="tab">All</a>
         </li>
@@ -22,9 +21,9 @@
       </ul>
     </div>
   </nav>
-  <div class="tab-content">
+  <div class="tab-content border">
     <div id="tab1" class="tab-pane fade show active" id="nav-all"><%= render 'public/posts/list', posts: @posts %></div>
-    <div id="tab2" class="tab-pane fade" id="nav-happy">Happy</div>
+    <div id="tab2" class="tab-pane fade" id="nav-happy"></div>
     <div id="tab3" class="tab-pane fade" id="nav-angry"></div>
     <div id="tab4" class="tab-pane fade" id="nav-sad"></div>
     <div id="tab5" class="tab-pane fade" id="nav-fun"></div>
