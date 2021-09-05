@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container h-auto">
   <h2 class="py-5 pl-5">おともだち一覧</h2>
 
   <div class="row w-75 mx-auto">
     <% @users.each do |user| %>
-    <div class="col-6 d-flex flex-row">
+    <div class="col-6 d-flex flex-row my-3">
       <div class="pl-5 ml-5">
         <%= link_to user_path(user.id) do %>
           <%= attachment_image_tag user, :image, format: 'jpeg', fallback: "NoImage.jpg", size: '50x50', class: 'rounded-circle' %>
@@ -16,4 +16,5 @@
     <% end %>
     <%= paginate @users %>
   </div>
+
 </div>

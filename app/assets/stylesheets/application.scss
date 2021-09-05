@@ -15,13 +15,18 @@
 
 @import "bootstrap";
 
- nav {
+ body {
+  background-color: #FFFFCC;
+ }
+
+ header {
   background-image: url(sky.png);
   background-size: contain;
   background-position: bottom;
 }
 
  footer {
+   width: 100%;
    background-image: url(line_shibafu.png);
    background-size: cover;
    background-position: bottom center;

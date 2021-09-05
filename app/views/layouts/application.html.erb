@@ -16,18 +16,26 @@
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <div class="navbar-brand">
-              <%= link_to "ラマひろば", "/", class: 'text-warning pr-3' %>
+            <% if admin_signed_in? %>
+              <%= link_to root_path do %>
+                <%= image_tag 'rogo.png', size: '100x100' %>
+              <% end %>
+            <% else %>
+              <%= link_to root_path do %>
+                <%= image_tag 'rogo.png', size: '100x100' %>
+              <% end %>
               <%= link_to new_post_path do %>
                 <%= image_tag 'speech.png', size: '80x80' %>
               <% end %>
+            <% end %>
           </div>
 
         <div class="collapse navbar-collapse">
           <% if admin_signed_in? %>
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: 'text-body mr-3' %></li>
-              <li class="nav-item"><%= link_to "報告一覧", admin_post_comments_path, class: 'text-body mr-3' %></li>
-              <li class="nav-item"><%= link_to "ログアウト", admin_sign_out_path, method: :delete, class: 'text-body' %></li>
+              <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: 'text-body mr-4 btn btn-light' %></li>
+              <li class="nav-item"><%= link_to "報告一覧", admin_post_comments_path, class: 'text-body mr-4 btn btn-light' %></li>
+              <li class="nav-item"><%= link_to "ログアウト", admin_sign_out_path, method: :delete, class: 'text-body btn btn-light' %></li>
             </ul>
           <% elsif user_signed_in? %>
             <ul class="navbar-nav ml-auto">

@@ -21,6 +21,7 @@ class Public::PostsController < ApplicationController
   end
 
   def pick_up
+    @posts = Post.order("created_at DESC").page(params[:page]).per(8)
   end
 
   def show
