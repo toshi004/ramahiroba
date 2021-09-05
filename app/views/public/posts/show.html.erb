@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <div class="border border-dark w-75 mx-auto">
+  <div class="border rounded-top border-dark w-75 mx-auto">
     <div　class="border border-dark">
       <div class="row px-3 pt-3">
         <div class="col-4">
@@ -74,8 +74,8 @@
     </div>
 
     <!--コメント欄-->
-    <div class="border border-dark w-75 mx-auto">
-      <div class="border border-dark">
+    <div class="border rounded-bottom border-dark w-75 mx-auto">
+      <div class="border-bottom border-dark">
         <%= form_with(model: [@post, @post_comment] , local: true) do |f| %>
           <div class="form-group row">
             <div class="col-10 pt-3 px-4">
@@ -87,28 +87,32 @@
           </div>
         <% end %>
       </div>
-      <div>
-        <% @post.post_comments.each do |post_comment| %>
-          <div class="row pt-2">
+
+      <% @post.post_comments.each do |post_comment| %>
+        <div class="border-bottom">
+          <div class="row py-2 align-items-center">
             <div class="col-1 px-4">
               <%= attachment_image_tag post_comment.user, :image, format: 'jpeg', fallback: "NoImage.jpg", size: '40x40', class: 'rounded-circle' %>
             </div>
-            <div class="col-2 pt-1 text-center">
+            <div class="col-1">
               <%= link_to post_comment.user.name, user_path(post_comment.user) %>
             </div>
-            <div class="col-7 pt-1">
+            <div class="col-8">
               <%= post_comment.comment %>
             </div>
 
             <div class="col-2 text-right pr-4">
               <% if post_comment.post.user.id == current_user.id %>
-                <%= link_to "削除", post_post_comment_path(post_comment), class: 'btn btn-sm btn-danger' %>
+                <%= link_to "削除", post_post_comment_path(post_comment), class: 'btn btn-sm btn-danger mr-4' %>
+              <% elsif post_comment.user.id == current_user.id %>
+                <%= link_to "削除", post_post_comment_path(post_comment), class: 'btn btn-sm btn-danger mr-4' %>
               <% end %>
             </div>
           <!--ポップアップ出してから削除-->
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
+
     </div>
   </div>
 
