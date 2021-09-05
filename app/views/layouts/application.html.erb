@@ -18,14 +18,14 @@
           <div class="navbar-brand">
             <% if admin_signed_in? %>
               <%= link_to root_path do %>
-                <%= image_tag 'rogo.png', size: '100x100' %>
+                <%= image_tag 'rogo.png', size: '60x60' %>
               <% end %>
             <% else %>
               <%= link_to root_path do %>
-                <%= image_tag 'rogo.png', size: '100x100' %>
+                <%= image_tag 'rogo.png', size: '60x60' %>
               <% end %>
               <%= link_to new_post_path do %>
-                <%= image_tag 'speech.png', size: '80x80' %>
+                <%= image_tag 'speech.png', size: '60x60' %>
               <% end %>
             <% end %>
           </div>
@@ -41,22 +41,22 @@
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <%= link_to my_page_path do %>
-                  <%= image_tag 'cloud_mypage.png', size: '100x100' %>
+                  <%= image_tag 'cloud_mypage.png', size: '70x70' %>
                 <% end %>
               </li>
               <li class="nav-item">
                 <%= link_to posts_path do %>
-                  <%= image_tag 'cloud_postindex.png', size: '100x100' %>
+                  <%= image_tag 'cloud_postindex.png', size: '70x70' %>
                 <% end %>
               </li>
               <li class="nav-item">
                 <%= link_to users_path do %>
-                  <%= image_tag 'cloud_userindex.png', size: '100x100' %>
+                  <%= image_tag 'cloud_userindex.png', size: '70x70' %>
                 <% end %>
               </li>
               <li class="nav-item">
                 <%= link_to destroy_user_session_path, method: :delete do %>
-                  <%= image_tag 'cloud_signout.png', size: '100x100' %>
+                  <%= image_tag 'cloud_signout.png', size: '70x70' %>
                 <% end %>
               </li>
             </ul>
@@ -64,17 +64,17 @@
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <%= link_to about_path do %>
-                  <%= image_tag 'cloud_about.png', size: '100x100' %>
+                  <%= image_tag 'cloud_about.png', size: '70x70' %>
                 <% end %>
               </li>
               <li class="nav-item">
                 <%= link_to new_user_registration_path do %>
-                  <%= image_tag 'cloud_registration.png', size: '100x100' %>
+                  <%= image_tag 'cloud_registration.png', size: '70x70' %>
                 <% end %>
               </li>
               <li class="nav-item">
                 <%= link_to new_user_session_path do %>
-                  <%= image_tag 'cloud_session.png', size: '100x100' %>
+                  <%= image_tag 'cloud_session.png', size: '70x70' %>
                 <% end %>
               </li>
             </ul>
