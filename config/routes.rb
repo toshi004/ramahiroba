@@ -22,9 +22,12 @@ Rails.application.routes.draw do
       registrations: 'public/devise/registrations',
       passwords: 'public/devise/passwords'
     }
-    resources :users, except: [:new, :create]
-      get 'my_page', to: 'users#my_page'
-      get 'unsubscribe', to: 'users#unsubscribe'
+    resources :users, except: [:new, :create] do
+      resources :user_favorites, only: [:create, :destroy]
+    end
+    get 'follow_index', to: 'users#follow_index'
+    get 'my_page', to: 'users#my_page'
+    get 'unsubscribe', to: 'users#unsubscribe'
     get 'posts/thanks', to: 'posts#thanks'
     get 'posts/pick_up', to: 'posts#pick_up'
     resources :posts do
@@ -32,7 +35,6 @@ Rails.application.routes.draw do
       resources :likes, only: [:create, :destroy]
       resources :post_favorites, only: [:create, :destroy]
     end
-    resources :user_favorites, only: [:create, :destroy]
     resources :tags, only: [:index]
     get 'inquiry/new', to: 'inquiry#new'
     post 'inquiry/confirm', to: 'inquiry#confirm'

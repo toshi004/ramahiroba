@@ -21,7 +21,13 @@ class Public::PostsController < ApplicationController
   end
 
   def pick_up
-    @posts = Post.order("created_at DESC").page(params[:page]).per(8)
+    path = Rails.application.routes.recognize_path(request.referer)
+    if path[:controller] == "public/users" && path[:action] == "my_page"
+      @posts = Post.order("created_at DESC").page(params[:page]).per(8)
+    else
+      @tag = Tag.find(params[:tag_id])
+      @posts = @tag.posts.order("created_at DESC").page(params[:page]).per(8)
+    end
   end
 
   def show

@@ -1,12 +1,11 @@
 class Public::UsersController < ApplicationController
 
   def index
-    # if path[:controller] == "public/users" && path[:action] == "my_page"
-      # user = User.find(params[:user_id])
-      # @users = user.followings.page(params[:page]).per(8)
-    # else
-      @users = User.page(params[:page]).per(6)
-    # end
+    @users = User.page(params[:page]).per(6)
+  end
+
+  def follow_index
+    @user  = current_user
   end
 
   def show
