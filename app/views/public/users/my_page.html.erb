@@ -5,7 +5,7 @@
 
       <div class="row">
         <div class="col-5 py-2 px-3">
-          <%= attachment_image_tag @user, :image, format: 'jpeg', fallback: "NoImage.jpg", size: '70x70', class: 'rounded-circle' %>
+          <%= attachment_image_tag @user, :image, fallback: "NoImage.png", size: '70x70', class: 'rounded-circle' %>
         </div>
         <div class="col-7 text-center pt-4">
           <p class="border-bottom"><%= @user.name %></p>
@@ -23,7 +23,7 @@
 
     <div class="col-5 text-right pr-5">
       <div class="py-3">
-        <%= link_to "おきにいりおともだち一覧", users_path, class: 'btn btn-warning btn-lg text-white' %>
+        <%= link_to "おきにいりともだち一覧", follow_index_path, class: 'btn btn-warning btn-lg text-white' %>
       </div>
       <div class="py-3">
         <%= link_to "おきにいりおはなし一覧", posts_pick_up_path, class: 'btn btn-success btn-lg' %>

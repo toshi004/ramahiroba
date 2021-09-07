@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_28_045834) do
+ActiveRecord::Schema.define(version: 2021_09_07_163727) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -75,10 +75,10 @@ ActiveRecord::Schema.define(version: 2021_08_28_045834) do
 
   create_table "user_favorites", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "follow_id"
+    t.integer "following_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id", "follow_id"], name: "index_user_favorites_on_user_id_and_follow_id", unique: true
+    t.index ["user_id", "following_id"], name: "index_user_favorites_on_user_id_and_following_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

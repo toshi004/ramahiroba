@@ -8,17 +8,18 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
   has_many :user_favorites, dependent: :destroy
-  has_many :followings, through: :user_favorites, source: :follow
+  has_many :following, class_name: "user_favorite", foreign_key: "following_id", dependent: :destroy
+  has_many :followings, through: :user_favorites
   has_many :likes,  dependent: :destroy
 
   attachment :image
 
   def follow(user_id)
-    user_favorites.create(follow_id: user_id)
+    user_favorites.create(following_id: user_id)
   end
 
   def unfollow(user_id)
-    user_favorites.find_by(follow_id: user_id).destroy
+    user_favorites.find_by(following_id: user_id).destroy
   end
 
   def following?(user)
