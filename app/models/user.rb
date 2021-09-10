@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+        :recoverable, :rememberable
 
   has_many :posts,  dependent: :destroy
   has_many :post_comments, dependent: :destroy
@@ -13,6 +13,10 @@ class User < ApplicationRecord
   has_many :likes,  dependent: :destroy
 
   attachment :image
+
+  validates :name, :presence => {:message => 'ユーザー名を入力してください'}
+  validates :email, :presence => {:message => 'メールアドレスを入力してください'}
+  validates :password, :presence => {:message => 'パスワードを入力してください'}
 
   def follow(user_id)
     user_favorites.create(following_id: user_id)
@@ -25,14 +29,5 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-
-  # 投稿お気に入り
-  # # def favorite
-  # #   post_favorites.create(user_id: current_user.id, post_id: post_id)
-  # # end
-
-  # def favoriting?(post)
-  #   favoriting.include?(post)
-  # end
 
 end

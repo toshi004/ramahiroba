@@ -28,14 +28,16 @@ Rails.application.routes.draw do
     get 'follow_index', to: 'users#follow_index'
     get 'my_page', to: 'users#my_page'
     get 'unsubscribe', to: 'users#unsubscribe'
-    get 'posts/thanks', to: 'posts#thanks'
     get 'posts/pick_up', to: 'posts#pick_up'
     resources :posts do
-      resources :post_comments, only: [:create, :destroy]
+      get 'posts/thanks', to: 'posts#thanks'
+      resources :post_comments, only: [:create, :destroy, :update]
       resources :likes, only: [:create, :destroy]
       resources :post_favorites, only: [:create, :destroy]
     end
-    resources :tags, only: [:index]
+    resources :tags, only: [:index] do
+      get 'search', to: 'tags#search'
+    end
     get 'inquiry/new', to: 'inquiry#new'
     post 'inquiry/confirm', to: 'inquiry#confirm'
     post 'inquiry/thanks', to: 'inquiry#thanks'

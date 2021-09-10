@@ -13,6 +13,19 @@ class Public::PostCommentsController < ApplicationController
     redirect_to post_path(params[:post_id])
   end
 
+  def update
+    case params[:comment_sort]
+    when "update"
+      comment = PostComment.find_by(id: params[:id], post_id: params[:post_id])
+      comment.update(report: true)
+      redirect_to request.referer
+    when "destroy"
+      comment = PostComment.find_by(id: params[:id], post_id: params[:post_id])
+      comment.update(report: false)
+      redirect_to request.referer
+    end
+  end
+
   private
 
   def post_comment_params

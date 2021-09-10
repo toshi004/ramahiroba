@@ -1,6 +1,11 @@
 class Public::TagsController < ApplicationController
 
   def index
-    @teg_list = Tag.all
+    @tag_list = Tag.all
+  end
+
+  def search
+    @tag = Tag.find(params[:tag_id])
+    @posts = @tag.posts.page(params[:page]).per(8)
   end
 end

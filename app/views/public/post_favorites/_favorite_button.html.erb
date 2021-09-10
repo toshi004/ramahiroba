@@ -1,9 +1,0 @@
-<% if !Post_favorite.exists?(user_id: current_user.id, post_id: post.id) %>
-  <%= link_to post_post_favorites_path, method: :post do %>
-    ☆
-  <% end %>
-<% else %>
-  <%= link_to post_post_favorite_path(post.id), method: :delete do %>
-    ★
-  <% end %>
-<% end %>
