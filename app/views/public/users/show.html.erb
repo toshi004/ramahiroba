@@ -6,7 +6,7 @@
       <div class="border rounded bg-light mr-5">
         <div class="row">
           <div class="col-3 p-4">
-            <%= attachment_image_tag @user, :image, fallback: "NoImage.png", size: '60x60', class: 'rounded-circle' %>
+            <%= attachment_image_tag @user, :image, fallback: "NoImage_icon.png", size: '60x60', class: 'rounded-circle' %>
           </div>
           <div class="col-6">
             <p class="h5 pt-4 mt-3"><%= @user.name %></p>
@@ -41,7 +41,7 @@
       <% @posts.each do |post| %>
       <div class="row border rounded border-dark m-3 p-3 bg-white">
         <div class="col-5 d-flex align-items-center">
-           <%= attachment_image_tag post, :image, fallback: "NoImage.png", size: '80x80' %>
+           <%= attachment_image_tag post, :image, fallback: "NoImage_post.png", size: '80x80' %>
         </div>
         <div class="col-7">
           <div class="row">

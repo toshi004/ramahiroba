@@ -1,6 +1,17 @@
 <div class="container">
   <h2 class="text-center py-5">新しいおはなし</h2>
 
+  <% if @post.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <strong>入力内容にエラーがあります</strong>
+      <ul>
+        <% @post.errors.each do |attr, msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="row justify-content-md-center">
     <%= form_with model: @post, local: true do |f| %>
 
@@ -40,7 +51,7 @@
           複数のタグをつけることができます。<br/>
           例:　動物、子育て、学習
           </p>
-          <%= f.text_field :tag_name %>
+          <%= f.text_field :tag_list %>
         </div>
       </div>
 

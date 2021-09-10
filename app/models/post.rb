@@ -8,11 +8,14 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
   has_many :tagmaps, dependent: :destroy
-  has_many :tags, through: :tagmaps, dependent: :destroy
-
-  accepts_nested_attributes_for :tags, allow_destroy: true
+  has_many :tags, through: :tagmaps
 
   enum emotion: { happy: 0, angry: 1, sad: 2, fun: 3}
+
+  validates :title, :presence => {:message => 'タイトルを入力してください'}
+  validates :text, :presence => {:message => '本文を入力してください'}
+  validates :emotion, :presence => {:message => '気持ちを選択してください'}
+
 
   def start_time
     self.created_at
@@ -22,18 +25,22 @@ class Post < ApplicationRecord
     likes.where(user_id: user.id).exists?
   end
 
-  def save_tags(tag_list)
-    tag_list.each do |tag|
+  def favorited_by?(user)
+    post_favorites.where(user_id: user.id).exists?
+  end
 
-      unless find_tag = Tag.find_by(tag_name: tag.downcase)
-        begin
-          self.tags.create!(tag_name: tag)
-        rescue
-          nil
-        end
-      else
-        Tagmap.create!(post_id: self.id, tag_id: find_tag.id)
-      end
+  def save_tags(tags)
+    current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
+    old_tags = current_tags - tags
+    new_tags = tags - current_tags
+
+    old_tags.each do |old|
+      self.tags.delete Tag.find_by(tag_name: old)
+    end
+
+    new_tags.each do |new|
+      post_tag = Tag.find_or_create_by(tag_name: new)
+      self.tags << post_tag
     end
   end
 

@@ -63,10 +63,11 @@ ActiveRecord::Schema.define(version: 2021_09_07_163727) do
     t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_tagmaps_on_post_id"
+    t.index ["tag_id"], name: "index_tagmaps_on_tag_id"
   end
 
   create_table "tags", force: :cascade do |t|
-    t.integer "tagmap_id"
     t.string "tag_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -88,7 +89,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_163727) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.boolean "suspended", default: false
+    t.boolean "suspended", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_id"

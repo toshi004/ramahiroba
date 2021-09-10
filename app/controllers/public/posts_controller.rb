@@ -7,12 +7,12 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if @post.save!
-      tag_list = params[:post][:tag_name].delete(" ").split(/[,|、]/)
+    tag_list = params[:post][:tag_list].delete("　").split(/[,|、]/)
+    if @post.save
       @post.save_tags(tag_list)
-      redirect_to posts_thanks_path
+      redirect_to post_posts_thanks_path(@post.id)
     else
-      render new_post_path
+      render :new
     end
   end
 
@@ -21,12 +21,13 @@ class Public::PostsController < ApplicationController
   end
 
   def pick_up
-    path = Rails.application.routes.recognize_path(request.referer)
-    if path[:controller] == "public/users" && path[:action] == "my_page"
-      @posts = Post.order("created_at DESC").page(params[:page]).per(8)
-    else
-      @tag = Tag.find(params[:tag_id])
-      @posts = @tag.posts.order("created_at DESC").page(params[:page]).per(8)
+    case params[:post_sort]
+    when "favorite"
+      favorites = PostFavorite.where(user_id: current_user.id).pluck(:post_id)
+      post = Post.find(favorites)
+      @posts = Kaminari.paginate_array(post).page(params[:page]).per(8)
+    when "mine"
+      @posts = Post.where(user_id: current_user.id).page(params[:page]).per(8)
     end
   end
 
@@ -42,8 +43,11 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
-    redirect_to posts_thanks_path
+    if @post.update(post_params)
+      redirect_to posts_thanks_path
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -53,12 +57,13 @@ class Public::PostsController < ApplicationController
   end
 
   def thanks
+    @post = Post.find(params[:post_id])
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:image, :title, :text, :emotion, { tag_name: [] } )
+    params.require(:post).permit(:image, :title, :text, :emotion, :tag_name)
   end
 
 end

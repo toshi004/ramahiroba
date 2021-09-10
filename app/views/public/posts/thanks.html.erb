@@ -1,17 +1,69 @@
 <div class="container p-5">
 
-  <div class="row">
-    <div class="col-6 text-right mt-5">
-      <%= image_tag 'rabit_1.png', size: '350x350' %>
+  <% if @post.emotion == "happy" %>
+    <div class="row">
+      <div class="col-6 text-right mt-5">
+        <%= image_tag 'rabit_1.png', size: '350x350' %>
+      </div>
+      <div class="col-6 text-center px-5 pt-5 thanks">
+        <p class="ml-5 pl-5 mt-4">
+          うんうん！<br>
+          きみがうれしそうでぼくもうれしいよ！<br>
+          またうれしいことがあったらおしえてね！<br>
+          きっともっとうれしくなるから！<br>
+          はなしてくれてありがとね！
+        </p>
+      </div>
     </div>
-    <div class="col-6 text-center px-5 pt-5 thanks">
-      <p class="ml-5 pl-5 mt-4">
-        うんうん！<br>
-        きみがうれしそうでぼくもうれしいよ！<br>
-        またうれしいことがあったらおしえてね！<br>
-        きっともっとうれしくなるから！<br>
-        はなしてくれてありがとね！
-      </p>
+
+  <% elsif @post.emotion == "angry" %>
+    <div class="row">
+      <div class="col-6 text-right mt-5">
+        <%= image_tag 'fox_1.png', size: '350x350' %>
+      </div>
+      <div class="col-6 text-center px-5 pt-5 thanks">
+        <p class="ml-5 pl-5 mt-4">
+          それは大変だったね。<br>
+          そういうときは
+          思いっきり怒ってもいいんだよ。<br>
+          嫌なことがあったら<br>
+          いつでも話してね。<br>
+        </p>
+      </div>
     </div>
-  </div>
+
+  <% elsif @post.emotion == "sad" %>
+    <div class="row">
+      <div class="col-6 text-right mt-5">
+        <%= image_tag 'bear_1.png', size: '350x350' %>
+      </div>
+      <div class="col-6 text-center px-5 pt-5 thanks">
+        <p class="ml-5 pl-5 mt-4">
+          そんなことがあったんだね。<br>
+          大丈夫。<br>
+          君が悲しいときは、<br>
+          僕が受け止めてあげるからね。<br>
+        </p>
+      </div>
+    </div>
+
+  <% elsif @post.emotion == "fun" %>
+    <div class="row">
+      <div class="col-6 text-right mt-5">
+        <%= image_tag 'kawauso_1.png', size: '350x350' %>
+      </div>
+      <div class="col-6 text-center px-5 pt-5 thanks">
+        <p class="ml-5 pl-5 mt-4">
+          いえーーーい！！<br>
+          それ最高だね！！<br>
+          ぼくも楽しくなったよ！<br>
+          楽しいって最高！！！<br>
+          きみのはなしも最高！！！<br>
+        </p>
+      </div>
+    </div>
+
+  <% end %>
+
+
 </div>
