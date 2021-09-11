@@ -13,35 +13,35 @@
  *= require simple_calendar
  */
 
-@import "bootstrap";
+ @import "bootstrap";
 
  body {
   background-color: #FFFFCC;
  }
 
  header {
-  background-image: url(sky.png);
+  background-image: image-url("sky.png");
   background-size: contain;
   background-position: bottom;
 }
 
  footer {
    width: 100%;
-   background-image: url(line_shibafu.png);
+   background-image: image-url("line_shibafu.png");
    background-size: cover;
    background-position: bottom center;
  }
 
  .top {
   height: 600px;
-  background-image: url(top_kari.png);
+  background-image: image-url("top.png");
   background-repeat: no-repeat;
   background-size: 75% 100%;
   background-position: bottom center;
  }
 
  .thanks {
-  background-image: url(speech.png);
+  background-image: image-url("speech.png");
   background-repeat: no-repeat;
   background-size: 100% 110%;
   margin-bottom: 10%;
