@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       delete 'sign_out', to: 'devise/sessions#destroy'
     end
     resources :users, only: [:index, :show, :update]
-    resources :post_comments, only: [:index, :show, :destroy]
+    resources :post_comments, only: [:index, :show, :update]
   end
 
   scope module: :public do

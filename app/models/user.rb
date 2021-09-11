@@ -16,7 +16,7 @@ class User < ApplicationRecord
 
   validates :name, :presence => {:message => 'ユーザー名を入力してください'}
   validates :email, :presence => {:message => 'メールアドレスを入力してください'}
-  validates :password, :presence => {:message => 'パスワードを入力してください'}
+  validates :password, :presence => {:message => 'パスワードを入力してください'}, on: :create
 
   def follow(user_id)
     user_favorites.create(following_id: user_id)

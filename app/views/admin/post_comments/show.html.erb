@@ -7,11 +7,11 @@
     <% end %>
   </h4>
 
-  <div class="border border-dark text-center w-50 mx-auto p-3">
+  <div class="border border-dark text-center w-25 mx-auto p-3">
     <%= @post_comment.comment %>
   </div>
 
   <div class="text-center py-4">
-    <%= link_to "取り消し", admin_post_comment_path(@post_comment), method: :delete, class: 'btn btn-warning text-white' %>
+    <%= link_to "取り消し", admin_post_comment_path(@post_comment), method: :put, class: 'btn btn-warning text-white' %>
   </div>
 </div>

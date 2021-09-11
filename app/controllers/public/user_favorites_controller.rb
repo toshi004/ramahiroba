@@ -1,4 +1,5 @@
 class Public::UserFavoritesController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     current_user.follow(params[:user_id])
