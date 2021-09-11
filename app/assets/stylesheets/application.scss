@@ -10,6 +10,39 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
+ *= require simple_calendar
  */
+
+@import "bootstrap";
+
+ body {
+  background-color: #FFFFCC;
+ }
+
+ header {
+  background-image: url(sky.png);
+  background-size: contain;
+  background-position: bottom;
+}
+
+ footer {
+   width: 100%;
+   background-image: url(line_shibafu.png);
+   background-size: cover;
+   background-position: bottom center;
+ }
+
+ .top {
+  height: 600px;
+  background-image: url(top_kari.png);
+  background-repeat: no-repeat;
+  background-size: 75% 100%;
+  background-position: bottom center;
+ }
+
+ .thanks {
+  background-image: url(speech.png);
+  background-repeat: no-repeat;
+  background-size: 100% 110%;
+  margin-bottom: 10%;
+ }

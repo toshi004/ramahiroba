@@ -1,0 +1,53 @@
+<div class="container">
+  <h2 class="py-5">新規ユーザー登録</h2>
+
+  <% if @user.errors.any? %>
+    <div class="alert alert-danger">
+      <strong>入力内容にエラーがあります</strong>
+      <ul>
+        <% @user.errors.each do |attr, msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+
+    <div class="form-group row">
+      <label class="col-3 col-form-label">ユーザー名</label>
+      <div class="col-4">
+        <%= f.text_field :name, autofocus: true, placeholder: "ラマ", class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-3 col-form-label">メールアドレス</label>
+      <div class="col-4">
+        <%= f.email_field :email, autocomplete: "email", placeholder: "example@rama.com", class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-3 col-form-label">パスワード(6文字以上)</label>
+      <div class="col-4">
+        <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-3 col-form-label">パスワード（確認用)</label>
+      <div class="col-4">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-6 text-center pt-4">
+        <%= f.submit "登録", class: 'btn btn-warning' %>
+      </div>
+    </div>
+  <% end %>
+
+  <%#= render "public/devise/shared/links" %>
+</div>

@@ -1,0 +1,30 @@
+<div class="container">
+  <h2 class="text-center py-5">ユーザー一覧</h2>
+
+  <table class="table table-sm border w-50 mx-auto">
+    <thead class="thead-light">
+      <tr>
+        <th>ユーザー名</th>
+        <th class="text-center">ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= link_to admin_user_path(user.id) do %>
+            <%= user.name %>
+          <% end %>
+        </td>
+        <td class="text-center">
+          <% if user.suspended == false %>
+            <span class="text-success">有効</span>
+          <% elsif user.suspended == true %>
+            <span class="text-secondary">一時停止中</span>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

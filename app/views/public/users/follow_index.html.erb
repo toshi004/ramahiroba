@@ -1,0 +1,19 @@
+<div class="container h-auto">
+  <h2 class="py-5 pl-5">おきにいりともだち一覧</h2>
+
+  <div class="row w-75 mx-auto">
+    <% @user.followings.each do |user| %>
+    <div class="col-6 d-flex flex-row my-3">
+      <div class="pl-5 ml-5">
+        <%= link_to user_path(user.id) do %>
+          <%= attachment_image_tag user, :image, fallback: "NoImage_icon.png", size: '60x60', class: 'rounded-circle' %>
+        <% end %>
+      </div>
+      <div class="ml-5 mr-3 pt-3">
+        <p class="mb-0"><%= link_to user.name, user_path(user.id), class: 'border-bottom' %></p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+</div>

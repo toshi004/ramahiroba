@@ -1,0 +1,77 @@
+<div class="container p-3">
+
+  <div class="row m-3">
+
+    <div class="col-6 pt-3">
+      <div class="border rounded bg-light mr-5">
+        <div class="row">
+          <div class="col-3 p-4">
+            <%= attachment_image_tag @user, :image, fallback: "NoImage_icon.png", size: '60x60', class: 'rounded-circle' %>
+          </div>
+          <div class="col-6">
+            <p class="h5 pt-4 mt-3"><%= @user.name %></p>
+          </div>
+
+        　<!--お気に入りボタン-->
+          <div class="col-2 mt-4 pt-3">
+            <% if @user.id == current_user.id %>
+            <% else %>
+              <% if current_user.following?(@user) %>
+                <%= link_to user_user_favorite_path(@user.id), method: :delete do %>
+                  <%= image_tag 'star_after.png', size: '15x15' %>
+                <% end %>
+              <% else %>
+                <%= link_to user_user_favorites_path(@user.id), method: :post do %>
+                  <%= image_tag 'star_before.png', size: '15x15' %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+
+        </div>
+        <div class="d-flex flex-row-reverse mr-5">
+          <div class="border bg-white w-50 p-1 mb-3 mr-5">
+            <p><%= @user.introduction %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <% @posts.each do |post| %>
+      <div class="row border rounded border-dark m-3 p-3 bg-white">
+        <div class="col-5 d-flex align-items-center">
+           <%= attachment_image_tag post, :image, fallback: "NoImage_post.png", size: '80x80' %>
+        </div>
+        <div class="col-7">
+          <div class="row">
+            <div class="col-8">
+              <%= link_to post_path(post.id) do %>
+                <h5 class="text-body border-bottom"><%= post.title %></h5>
+              <% end %>
+            </div>
+            <div class="col-4">
+              <% if post.emotion == "happy" %>
+                <p class="text-warning">Happy</p>
+              <% elsif post.emotion == "angry" %>
+                <p class="text-danger">Angry</p>
+              <% elsif post.emotion == "sad" %>
+                <p class="text-info">Sad</p>
+              <% else %>
+                <p class="text-success">Fun</p>
+              <% end %>
+            </div>
+          </div>
+           <p><%= post.text %></p>
+           <p><%= post.created_at.strftime('%Y/%m/%d') %></p>
+         </div>
+      </div>
+      <% end %>
+
+      <div class="pagination justify-content-center">
+        <%= paginate @posts %>
+      </div>
+
+    </div>
+  </div>
+</div>

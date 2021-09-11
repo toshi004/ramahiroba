@@ -1,0 +1,10 @@
+<div class="container p-3">
+
+  <h2 class="my-2">タグ一覧</h2>
+
+  <div class="my-3">
+    <% @tag_list.each do |list| %>
+      <span class="mx-3"><%= link_to list.tag_name, tag_search_path(list) %>(<%= list.posts.count %>)</span>
+    <% end %>
+  </div>
+</div>

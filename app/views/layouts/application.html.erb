@@ -4,12 +4,99 @@
     <title>Ramahiroba</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
+
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <div class="navbar-brand">
+            <% if user_signed_in? %>
+              <%= link_to root_path do %>
+                <%= image_tag 'rogo.png', size: '60x60' %>
+              <% end %>
+              <%= link_to new_post_path do %>
+                <%= image_tag 'speech_header.png', size: '70x50' %>
+              <% end %>
+            <% else %>
+              <%= link_to root_path do %>
+                <%= image_tag 'rogo.png', size: '60x60' %>
+              <% end %>
+            <% end %>
+          </div>
+
+        <div class="collapse navbar-collapse">
+          <% if admin_signed_in? %>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: 'text-body mr-4 btn btn-light' %></li>
+              <li class="nav-item"><%= link_to "報告一覧", admin_post_comments_path, class: 'text-body mr-4 btn btn-light' %></li>
+              <li class="nav-item"><%= link_to "ログアウト", admin_sign_out_path, method: :delete, class: 'text-body btn btn-light' %></li>
+            </ul>
+          <% elsif user_signed_in? %>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item mr-4">
+                <%= link_to my_page_path do %>
+                  <%= image_tag 'cloud_mypage.png', size: '70x50' %>
+                <% end %>
+              </li>
+              <li class="nav-item mr-4">
+                <%= link_to posts_path do %>
+                  <%= image_tag 'cloud_postindex.png', size: '70x50' %>
+                <% end %>
+              </li>
+              <li class="nav-item mr-4">
+                <%= link_to users_path do %>
+                  <%= image_tag 'cloud_userindex.png', size: '70x50' %>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <%= image_tag 'cloud_signout.png', size: '70x50' %>
+                <% end %>
+              </li>
+            </ul>
+          <% else %>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item mr-5">
+                <%= link_to about_path do %>
+                  <%= image_tag 'cloud_about.png', size: '70x50' %>
+                <% end %>
+              </li>
+              <li class="nav-item mr-5">
+                <%= link_to new_user_registration_path do %>
+                  <%= image_tag 'cloud_registration.png', size: '70x50' %>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_user_session_path do %>
+                  <%= image_tag 'cloud_session.png', size: '70x50' %>
+                <% end %>
+              </li>
+            </ul>
+          <% end %>
+        </div>
+      </nav>
+    </header>
+
+    <main class="mb-auto">
     <%= yield %>
+    </main>
+
+    <footer class="pt-3">
+      <div class="container">
+        <div class="row no-gutters">
+          <p class="mx-auto pt-3">
+            | <%= link_to "Home", root_path, class: 'text-body' %>
+            | <%= link_to "About", about_path, class: 'text-body' %>
+            | <%= link_to "お問い合わせ", inquiry_new_path, class: 'text-body' %> |
+          </p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

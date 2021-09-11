@@ -1,0 +1,30 @@
+<div class="container">
+  <h2 class="text-center py-5">ユーザー詳細</h2>
+
+  <div class="w-1oo">
+    <div class="text-center mb-5">
+      <h5><%= @user.name %></h5>
+    </div>
+
+    <div class="w-50 mx-auto">
+      <table class="table table-borderless">
+        <tr>
+          <th class="col-8 text-center">報告件数</th>
+          <td>
+            <%= link_to admin_post_comments_path(user_id: @user.id) do %>
+              <span class="h5"><%= @post_comment.count %>件</span>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="text-center mt-5">
+      <% if @user.suspended == false %>
+        <%= link_to '一時休止にする', admin_user_path(@user, suspended_sort: 'false'), method: :patch, class: 'btn btn-danger' %>
+      <% elsif @user.suspended == true %>
+        <%= link_to '取消', admin_user_path(@user, suspended_sort: 'true'), method: :patch, class: 'btn btn-success' %>
+      <% end %>
+    </div>
+  </div>
+</div>
