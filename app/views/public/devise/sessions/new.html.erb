@@ -2,6 +2,7 @@
   <h2 class="py-5">ログイン</h2>
 
   <%= form_with model: @user, url: new_user_session_path, local: true do |f| %>
+  <p class="text-danger h5 mb-3"><%= flash[:error] %></p>
 
     <div class="form-group row">
       <label class="col-2 col-form-label">メールアドレス</label>

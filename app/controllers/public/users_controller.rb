@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @users = User.page(params[:page]).per(6)
@@ -24,8 +25,11 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to my_page_path
+    if @user.update(user_params)
+      redirect_to my_page_path
+    else
+      render :edit
+    end
   end
 
   def unsubscribe
@@ -33,8 +37,8 @@ class Public::UsersController < ApplicationController
   end
 
   def destroy
-    @user = current_user
-    @user.destroy
+    @user = User.find(params[:id])
+    @user.delete
     redirect_to root_path
   end
 

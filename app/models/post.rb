@@ -12,8 +12,8 @@ class Post < ApplicationRecord
 
   enum emotion: { happy: 0, angry: 1, sad: 2, fun: 3}
 
-  validates :title, :presence => {:message => 'タイトルを入力してください'}
-  validates :text, :presence => {:message => '本文を入力してください'}
+  validates :title, :presence => {:message => 'タイトルを入力してください'}, length: {maximum: 20}
+  validates :text, :presence => {:message => '本文を入力してください'}, length: {maximum: 200}
   validates :emotion, :presence => {:message => '気持ちを選択してください'}
 
 

@@ -1,4 +1,5 @@
 class Admin::PostCommentsController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     if params[:user_id]
@@ -11,13 +12,13 @@ class Admin::PostCommentsController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @post_comment = PostComment.where(user_id: @user.id, report: true)
+    @post_comment = PostComment.find(params[:id])
   end
 
-  def destroy
-    @post_comment = PostComment.find(params[:id])
-    @post_comment.destroy
-    redirect_to admin_post_comments_path
+  def update
+    comment = PostComment.find(params[:id])
+    comment.update(report: false)
+    redirect_to  admin_post_comments_path
   end
 
 end

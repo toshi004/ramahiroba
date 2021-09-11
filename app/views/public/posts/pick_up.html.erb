@@ -19,7 +19,15 @@
               <p class="mb-0 pl-2"><%= link_to post.user.name, user_path(post.user.id) %></p>
             </div>
             <div class="text-right">
-              <%= post.emotion %>
+              <% if post.emotion == "happy" %>
+                <span class="text-warning">Happy</span>
+              <% elsif post.emotion == "angry" %>
+                <span class="text-danger">Angry</span>
+              <% elsif post.emotion == "sad" %>
+                <span class="text-info">Sad</span>
+              <% else %>
+                <span class="text-success">Fun</span>
+              <% end %>
             </div>
           </div>
           <div class="p-3">
