@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :post_favorites, dependent: :destroy
   has_many :user_favorites, dependent: :destroy
-  has_many :following, class_name: "user_favorite", foreign_key: "following_id", dependent: :destroy
+  has_many :following, class_name: "user_favorite", foreign_key: "following_id"
   has_many :followings, through: :user_favorites
   has_many :likes,  dependent: :destroy
 
