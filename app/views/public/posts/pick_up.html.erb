@@ -1,4 +1,10 @@
-<div class="container p-4">
+<div class="container">
+
+  <% if params[:post_sort] == "favorite" %>
+    <h2 class="my-3">お気に入り投稿一覧</h2>
+  <% elsif params[:post_sort] == "mine" %>
+    <h2 class="my-3">自分の投稿一覧</h2>
+  <% end %>
 
   <div class="row">
     <% @posts.each do |post| %>
